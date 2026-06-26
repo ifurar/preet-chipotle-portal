@@ -3,284 +3,133 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chipotle NNN Investment Shortlist · Preet Virk</title>
+<title>Chipotle NNN Investment Shortlist · Tenere Real Estate Advisors</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --forest: #1C3A2B;
-    --forest-mid: #2D5C42;
-    --sage: #4A7C5A;
-    --sage-light: #EAF3DE;
-    --parchment: #F5F1EA;
-    --parchment-dark: #EDE8DE;
-    --charcoal: #1E1E1E;
-    --charcoal-mid: #3A3A3A;
-    --charcoal-light: #6A6A6A;
-    --warm-white: #FAFAF8;
-    --terra: #C4622D;
-    --terra-light: #FAECE7;
-    --amber: #8B5E0A;
-    --amber-light: #FBF3E3;
-    --border: rgba(30,30,30,0.12);
-    --border-strong: rgba(30,30,30,0.22);
-    --radius: 8px;
-    --radius-lg: 14px;
-    font-size: 15px;
+    --forest: #1C3A2B; --sage-light: #EAF3DE; --parchment: #F5F1EA;
+    --parchment-dark: #EDE8DE; --charcoal: #1E1E1E; --charcoal-mid: #3A3A3A;
+    --charcoal-light: #6A6A6A; --amber: #8B5E0A; --amber-light: #FBF3E3;
+    --border: rgba(30,30,30,0.12); --border-strong: rgba(30,30,30,0.22);
+    --radius: 8px; --radius-lg: 14px;
   }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background: var(--parchment); color: var(--charcoal); min-height: 100vh; line-height: 1.6; font-size: 15px; }
 
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-    background: var(--parchment);
-    color: var(--charcoal);
-    min-height: 100vh;
-    line-height: 1.6;
-  }
-
-  /* ---- HEADER ---- */
-  .site-header {
-    background: var(--forest);
-    color: white;
-    padding: 0 40px;
-  }
-  .header-inner {
-    max-width: 1060px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 22px 0;
-  }
-  .header-brand { display: flex; flex-direction: column; gap: 2px; }
-  .header-wordmark { font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+  .site-header { background: var(--forest); color: white; padding: 0 40px; }
+  .header-inner { max-width: 1060px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 22px 0; }
+  .header-wordmark { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 3px; }
   .header-title { font-size: 20px; font-weight: 500; color: white; }
   .header-meta { font-size: 12px; color: rgba(255,255,255,0.5); text-align: right; line-height: 1.7; }
 
-  /* ---- MAIN ---- */
-  .main { max-width: 1060px; margin: 0 auto; padding: 36px 40px 60px; }
+  .main { max-width: 1060px; margin: 0 auto; padding: 32px 40px 60px; }
 
-  /* ---- OVERVIEW STRIP ---- */
-  .overview-strip {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    margin-bottom: 32px;
-  }
-  .metric-card {
-    background: white;
-    border: 0.5px solid var(--border);
-    border-radius: var(--radius);
-    padding: 16px 18px;
-  }
-  .metric-label { font-size: 11px; color: var(--charcoal-light); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
-  .metric-value { font-size: 22px; font-weight: 600; color: var(--charcoal); }
+  .overview-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 28px; }
+  .metric-card { background: white; border: 0.5px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+  .metric-label { font-size: 11px; color: var(--charcoal-light); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 3px; }
+  .metric-value { font-size: 20px; font-weight: 600; color: var(--charcoal); }
   .metric-sub { font-size: 11px; color: var(--charcoal-light); margin-top: 3px; }
 
-  /* ---- TABS ---- */
-  .tab-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 24px; }
-  .tab-btn {
-    padding: 8px 18px;
-    border-radius: 24px;
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    border: 1px solid var(--border-strong);
-    background: white;
-    color: var(--charcoal-light);
-    transition: all 0.15s;
-    font-family: inherit;
-  }
+  .tab-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 22px; }
+  .tab-btn { padding: 7px 16px; border-radius: 24px; font-size: 13px; font-weight: 500; cursor: pointer; border: 1px solid var(--border-strong); background: white; color: var(--charcoal-light); transition: all 0.12s; font-family: inherit; }
   .tab-btn:hover { background: var(--parchment-dark); color: var(--charcoal); }
   .tab-btn.active { background: var(--forest); color: white; border-color: var(--forest); }
-  .tab-btn.preferred::after { content: ' ★'; font-size: 10px; }
-
-  /* ---- PANELS ---- */
   .panel { display: none; }
   .panel.active { display: block; }
 
-  /* ---- DEAL HERO ---- */
-  .deal-hero {
-    background: white;
-    border: 0.5px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 24px 28px;
-    margin-bottom: 16px;
-  }
-  .deal-hero-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 18px; }
-  .deal-name { font-size: 22px; font-weight: 600; color: var(--charcoal); }
-  .deal-address { font-size: 13px; color: var(--charcoal-light); margin-top: 3px; }
-  .badge-row { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
-  .badge {
-    font-size: 11px; font-weight: 600; padding: 4px 11px; border-radius: 20px;
-    white-space: nowrap; letter-spacing: 0.04em;
-  }
-  .badge-preferred { background: var(--sage-light); color: #2D5C42; }
+  .deal-hero { background: white; border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 22px 26px; margin-bottom: 14px; }
+  .deal-hero-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 16px; }
+  .deal-name { font-size: 21px; font-weight: 600; color: var(--charcoal); }
+  .deal-address { font-size: 13px; color: var(--charcoal-light); margin-top: 2px; }
+  .badge-row { display: flex; gap: 5px; flex-wrap: wrap; justify-content: flex-end; }
+  .badge { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
   .badge-nnn { background: #EAF3DE; color: #2D5C42; }
   .badge-nn { background: var(--amber-light); color: var(--amber); }
   .badge-oz { background: #EEEDFE; color: #3C3489; }
+  .badge-open { background: #E6F1FB; color: #185FA5; }
+  .badge-soon { background: #F1EFE8; color: #5F5E5A; }
 
-  .deal-stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); margin-bottom: 18px; }
-  .stat-item { padding: 14px 0; text-align: center; border-right: 0.5px solid var(--border); }
+  .deal-stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); margin-bottom: 16px; }
+  .stat-item { padding: 12px 0; text-align: center; border-right: 0.5px solid var(--border); }
   .stat-item:last-child { border-right: none; }
-  .stat-val { font-size: 17px; font-weight: 600; color: var(--charcoal); }
-  .stat-lbl { font-size: 11px; color: var(--charcoal-light); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .stat-val { font-size: 16px; font-weight: 600; color: var(--charcoal); }
+  .stat-lbl { font-size: 10px; color: var(--charcoal-light); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.06em; }
 
-  .deal-links { display: flex; gap: 8px; flex-wrap: wrap; }
-  .link-btn {
-    display: inline-flex; align-items: center; gap: 5px;
-    font-size: 12px; padding: 6px 14px; border-radius: var(--radius);
-    border: 0.5px solid var(--border-strong); color: var(--charcoal-light);
-    cursor: pointer; background: white; font-family: inherit; text-decoration: none;
-    transition: all 0.12s;
-  }
+  .deal-links { display: flex; gap: 7px; flex-wrap: wrap; }
+  .link-btn { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; padding: 5px 12px; border-radius: var(--radius); border: 0.5px solid var(--border-strong); color: var(--charcoal-light); cursor: pointer; background: white; font-family: inherit; text-decoration: none; transition: all 0.12s; }
   .link-btn:hover { background: var(--parchment); color: var(--charcoal); }
-  .link-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+  .link-btn svg { width: 13px; height: 13px; flex-shrink: 0; }
 
-  /* ---- ALERT BANNER ---- */
-  .alert-banner {
-    background: var(--amber-light);
-    border: 0.5px solid rgba(139,94,10,0.25);
-    border-left: 3px solid var(--amber);
-    border-radius: var(--radius);
-    padding: 12px 16px;
-    font-size: 13px;
-    color: var(--amber);
-    margin-bottom: 14px;
-    line-height: 1.6;
-  }
-  .alert-banner strong { color: #5C3E07; }
-
-  .info-banner {
-    background: #EAF3FE;
-    border: 0.5px solid rgba(24,95,165,0.2);
-    border-left: 3px solid #378ADD;
-    border-radius: var(--radius);
-    padding: 12px 16px;
-    font-size: 13px;
-    color: #185FA5;
-    margin-bottom: 14px;
-    line-height: 1.6;
-  }
+  .alert-banner { background: var(--amber-light); border: 0.5px solid rgba(139,94,10,0.22); border-left: 3px solid var(--amber); border-radius: var(--radius); padding: 11px 15px; font-size: 13px; color: #6B4707; margin-bottom: 12px; line-height: 1.65; }
+  .alert-banner strong { color: #4A3205; }
+  .info-banner { background: #EAF3FE; border: 0.5px solid rgba(24,95,165,0.2); border-left: 3px solid #378ADD; border-radius: var(--radius); padding: 11px 15px; font-size: 13px; color: #185FA5; margin-bottom: 12px; line-height: 1.65; }
   .info-banner strong { color: #0C447C; }
 
-  /* ---- NARRATIVE ---- */
-  .narrative {
-    background: var(--parchment);
-    border-radius: var(--radius);
-    padding: 16px 20px;
-    font-size: 14px;
-    line-height: 1.75;
-    color: var(--charcoal-mid);
-    margin-bottom: 16px;
-    border: 0.5px solid var(--border);
-  }
+  .narrative { background: var(--parchment); border-radius: var(--radius); padding: 14px 18px; font-size: 14px; line-height: 1.75; color: var(--charcoal-mid); margin-bottom: 14px; border: 0.5px solid var(--border); }
   .narrative strong { color: var(--charcoal); font-weight: 600; }
 
-  /* ---- TWO-COL GRID ---- */
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px; }
-  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 16px; }
-
-  /* ---- DATA CARD ---- */
-  .data-card {
-    background: white;
-    border: 0.5px solid var(--border);
-    border-radius: var(--radius);
-    padding: 16px 18px;
-  }
-  .data-card-title {
-    font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--charcoal-light); margin-bottom: 12px; padding-bottom: 8px;
-    border-bottom: 0.5px solid var(--border);
-  }
-  .data-row { display: flex; justify-content: space-between; align-items: baseline; padding: 4px 0; border-bottom: 0.5px solid rgba(0,0,0,0.04); }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+  .data-card { background: white; border: 0.5px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+  .data-card-title { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--charcoal-light); margin-bottom: 10px; padding-bottom: 7px; border-bottom: 0.5px solid var(--border); }
+  .data-row { display: flex; justify-content: space-between; align-items: baseline; padding: 3px 0; border-bottom: 0.5px solid rgba(0,0,0,0.04); }
   .data-row:last-child { border-bottom: none; }
   .data-label { font-size: 12px; color: var(--charcoal-light); }
-  .data-value { font-size: 13px; font-weight: 500; color: var(--charcoal); }
+  .data-value { font-size: 12.5px; font-weight: 500; color: var(--charcoal); text-align: right; }
+  .c-best { color: #2D5C42; font-weight: 600; }
+  .c-warn { color: var(--amber); }
+  .c-bad { color: #993C1D; }
   .mpi-high { color: #2D5C42; font-weight: 600; }
   .mpi-low { color: #993C1D; font-weight: 600; }
+  .mpi-mid { color: var(--amber); font-weight: 600; }
 
-  /* ---- SECTION HEADING ---- */
-  .section-h { font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--charcoal-light); margin: 24px 0 12px; }
+  .section-h { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--charcoal-light); margin: 22px 0 10px; }
 
-  /* ---- COMPARE TABLE ---- */
-  .compare-wrap { overflow-x: auto; background: white; border: 0.5px solid var(--border); border-radius: var(--radius-lg); }
-  .compare-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
-  .compare-table th {
-    text-align: left; font-size: 10px; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 0.08em; color: var(--charcoal-light); padding: 12px 14px;
-    border-bottom: 0.5px solid var(--border); background: var(--parchment); white-space: nowrap;
-  }
-  .compare-table td { padding: 12px 14px; border-bottom: 0.5px solid var(--border); vertical-align: top; color: var(--charcoal); }
+  .compare-wrap { overflow-x: auto; background: white; border: 0.5px solid var(--border); border-radius: var(--radius-lg); margin-bottom: 20px; }
+  .compare-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .compare-table th { text-align: left; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--charcoal-light); padding: 10px 12px; border-bottom: 0.5px solid var(--border); background: var(--parchment); white-space: nowrap; }
+  .compare-table td { padding: 11px 12px; border-bottom: 0.5px solid var(--border); vertical-align: top; color: var(--charcoal); }
   .compare-table tr:last-child td { border-bottom: none; }
   .compare-table tr:hover td { background: var(--parchment); }
-  .compare-table td:first-child { font-weight: 600; white-space: nowrap; }
-  .c-best { color: #2D5C42; font-weight: 600; }
-  .c-warn { color: var(--amber); font-weight: 600; }
-  .c-bad { color: #993C1D; font-weight: 600; }
+  .compare-table td:first-child { font-weight: 600; }
 
-  /* ---- CHIPOTLE MPI TABLE ---- */
   .mpi-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  .mpi-table th { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--charcoal-light); padding: 8px 14px; border-bottom: 0.5px solid var(--border); text-align: left; }
-  .mpi-table td { padding: 10px 14px; border-bottom: 0.5px solid var(--border); }
+  .mpi-table th { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--charcoal-light); padding: 8px 12px; border-bottom: 0.5px solid var(--border); text-align: left; }
+  .mpi-table td { padding: 9px 12px; border-bottom: 0.5px solid var(--border); }
   .mpi-table tr:last-child td { border-bottom: none; }
   .mpi-table td:first-child { font-weight: 600; }
 
-  /* ---- INSIGHT BOX ---- */
-  .insight-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 20px; }
-  .insight-card {
-    background: var(--forest);
-    color: white;
-    border-radius: var(--radius-lg);
-    padding: 20px 22px;
-  }
-  .insight-card h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 8px; }
+  .insight-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .insight-card { background: var(--forest); color: white; border-radius: var(--radius-lg); padding: 18px 20px; }
+  .insight-card h4 { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 8px; }
   .insight-card p { font-size: 13px; line-height: 1.7; color: rgba(255,255,255,0.85); }
   .insight-card strong { color: white; }
 
-  /* ---- FOOTER ---- */
-  .site-footer {
-    border-top: 0.5px solid var(--border-strong);
-    padding: 20px 40px;
-    font-size: 11px;
-    color: var(--charcoal-light);
-    line-height: 1.7;
-    background: white;
-    text-align: center;
-  }
+  .site-footer { border-top: 0.5px solid var(--border-strong); padding: 18px 40px; font-size: 11px; color: var(--charcoal-light); line-height: 1.7; background: white; text-align: center; }
 
   @media (max-width: 768px) {
-    .main { padding: 20px 16px 40px; }
-    .site-header { padding: 0 16px; }
-    .header-inner { flex-direction: column; gap: 8px; align-items: flex-start; }
+    .main { padding: 18px 14px 40px; } .site-header { padding: 0 14px; }
+    .header-inner { flex-direction: column; gap: 6px; align-items: flex-start; }
     .overview-strip { grid-template-columns: 1fr 1fr; }
     .deal-stats { grid-template-columns: repeat(3, 1fr); }
-    .two-col, .three-col { grid-template-columns: 1fr; }
-    .insight-row { grid-template-columns: 1fr; }
-    .deal-hero { padding: 16px; }
-    .deal-hero-top { flex-direction: column; }
+    .two-col, .three-col, .insight-row { grid-template-columns: 1fr; }
+    .deal-hero { padding: 14px; } .deal-hero-top { flex-direction: column; }
     .badge-row { justify-content: flex-start; }
   }
 </style>
 </head>
 <body>
-
 <header class="site-header">
   <div class="header-inner">
-    <div class="header-brand">
-      <span class="header-wordmark">Tenere Real Estate Advisors</span>
-      <span class="header-title">Chipotle NNN Investment Shortlist</span>
+    <div>
+      <div class="header-wordmark">Tenere Real Estate Advisors · Confidential</div>
+      <div class="header-title">Chipotle NNN Investment Shortlist</div>
     </div>
-    <div class="header-meta">
-      Prepared for Preet Virk · June 2026<br>
-      Ian Furar, CCIM · CA DRE #02051422<br>
-      tenerecre.com · Confidential
-    </div>
+    <div class="header-meta">Prepared June 2026<br>Ian Furar, CCIM · CA DRE #02051422<br>tenerecre.com</div>
   </div>
 </header>
 
 <main class="main">
 
-  <!-- OVERVIEW STRIP -->
   <div class="overview-strip">
     <div class="metric-card">
       <div class="metric-label">Deals under review</div>
@@ -295,26 +144,25 @@
     <div class="metric-card">
       <div class="metric-label">Cap rate range</div>
       <div class="metric-value">4.75%–5.00%</div>
-      <div class="metric-sub">At asking price · Negotiation underway</div>
+      <div class="metric-sub">At asking price</div>
     </div>
     <div class="metric-card">
-      <div class="metric-label">Tenere recommendation</div>
-      <div class="metric-value" style="color:#2D5C42">Durham NC</div>
-      <div class="metric-sub">Absolute NNN · Strongest demographics · LOI at 5.00%</div>
+      <div class="metric-label">Shortlist basis</div>
+      <div class="metric-value">5 of 80</div>
+      <div class="metric-sub">Selected from 80 active Chipotle listings reviewed</div>
     </div>
   </div>
 
-  <!-- TABS -->
   <div class="tab-row">
-    <button class="tab-btn preferred active" onclick="showPanel('durham', this)">Durham NC</button>
-    <button class="tab-btn" onclick="showPanel('lanham', this)">Lanham MD</button>
-    <button class="tab-btn" onclick="showPanel('lemoore', this)">Lemoore CA</button>
-    <button class="tab-btn" onclick="showPanel('southgate', this)">Southgate MI</button>
-    <button class="tab-btn" onclick="showPanel('tyler', this)">Tyler TX</button>
-    <button class="tab-btn" onclick="showPanel('compare', this)" style="margin-left:8px">Compare all →</button>
+    <button class="tab-btn active" onclick="showPanel('durham',this)">Durham NC</button>
+    <button class="tab-btn" onclick="showPanel('lanham',this)">Lanham MD</button>
+    <button class="tab-btn" onclick="showPanel('lemoore',this)">Lemoore CA</button>
+    <button class="tab-btn" onclick="showPanel('southgate',this)">Southgate MI</button>
+    <button class="tab-btn" onclick="showPanel('tyler',this)">Tyler TX</button>
+    <button class="tab-btn" onclick="showPanel('compare',this)" style="margin-left:8px">Compare all →</button>
   </div>
 
-  <!-- ======= DURHAM ======= -->
+  <!-- ===== DURHAM ===== -->
   <div id="panel-durham" class="panel active">
     <div class="deal-hero">
       <div class="deal-hero-top">
@@ -323,40 +171,33 @@
           <div class="deal-address">2115 NC-54, Durham, NC 27713 · Research Triangle Park</div>
         </div>
         <div class="badge-row">
-          <span class="badge badge-preferred">Tenere Preferred ★</span>
           <span class="badge badge-nnn">Absolute NNN</span>
+          <span class="badge badge-open">Opened Nov 24, 2025</span>
         </div>
       </div>
       <div class="deal-stats">
         <div class="stat-item"><div class="stat-val">$3,776,000</div><div class="stat-lbl">Asking price</div></div>
         <div class="stat-item"><div class="stat-val">4.90%</div><div class="stat-lbl">Cap rate</div></div>
         <div class="stat-item"><div class="stat-val">$185,000</div><div class="stat-lbl">NOI yr 1</div></div>
-        <div class="stat-item"><div class="stat-val">~15.4 yrs</div><div class="stat-lbl">Term remaining</div></div>
-        <div class="stat-item"><div class="stat-val">New 2025</div><div class="stat-lbl">Construction</div></div>
+        <div class="stat-item"><div class="stat-val">~16 yrs</div><div class="stat-lbl">Term remaining</div></div>
+        <div class="stat-item"><div class="stat-val">2,763 SF</div><div class="stat-lbl">Building size</div></div>
       </div>
       <div class="deal-links">
-        <a class="link-btn" href="https://www.google.com/maps/search/2115+NC-54+Durham+NC" target="_blank">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Google Maps
-        </a>
-        <a class="link-btn" href="https://drive.google.com/file/d/1FRX8nO7lFOgMrhB3PoJJUz4EebqaOiPC/view" target="_blank">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-          Demographic Profile 2
-        </a>
-        <a class="link-btn" href="https://drive.google.com/drive/folders/1lva6wV99GnNwI5f9a64Dgv1YcpJOr_e0" target="_blank">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-          Due Diligence Folder
-        </a>
+        <a class="link-btn" href="https://www.google.com/maps/search/2115+NC-54+Durham+NC" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Google Maps</a>
+        <a class="link-btn" href="https://drive.google.com/file/d/1HxvqPYkc4nQQtjBSvN_T8_4K1uzGzZ0W/view" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Offering Memorandum</a>
+        <a class="link-btn" href="https://drive.google.com/file/d/1FRX8nO7lFOgMrhB3PoJJUz4EebqaOiPC/view" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Demographic Profile</a>
+        <a class="link-btn" href="https://drive.google.com/file/d/1-QRkO0NLpLVi_1H2MWf-cc62PARbE8tR/view" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Tapestry Map</a>
+        <a class="link-btn" href="https://drive.google.com/drive/folders/1lva6wV99GnNwI5f9a64Dgv1YcpJOr_e0" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>Due Diligence Folder</a>
       </div>
     </div>
 
     <div class="narrative">
-      <strong>The thesis.</strong> This Chipotlane sits at the nexus of Research Triangle Park — the most educated, highest-earning tech and pharma labor market in the Southeast. The 1-mile trade area is median age 31.7, 63% bachelor's degree or higher, and 72% white collar. The 3-mile average household income reaches $133,342. Population at 5 miles is growing at <strong>1.27% annually</strong>, adding ~9,700 people by 2031. The site was scraped from an old Arby's and built new in 2025 by a developer who selected the location to Chipotle's spec. Home delivery fast food ordering runs at MPI 136 — 36% above the national average — validating the Chipotlane digital model. Lease is <strong>Absolute NNN</strong>: Chipotle is responsible for roof, foundations, structure, and all building components. Landlord has no obligations. New construction means builder's warranty coverage is in force for the near term.
+      This Chipotlane is located at the entry to Research Triangle Park (RTP) — one of the largest research and technology parks in the United States, home to over 300 companies employing approximately 50,000–60,000 professionals across biotechnology, life sciences, and technology. The site was scraped from an Arby's and rebuilt new by the developer to Chipotle's specifications, with a 16-year lease with rent commencement November 24, 2025 (per executed Stipulation of Term). The 1-mile trade area is 63% college-educated, median age 31.7, and 72% white collar. Population at 5 miles is growing at 1.27% annually, adding approximately 9,700 people by 2031. Home delivery fast food ordering runs at MPI 136, validating the Chipotlane digital model. The lease is <strong>Absolute NNN</strong> — the tenant maintains all aspects of the premises including roof, structure, and foundations. There are no landlord obligations. A competing LOI at 5.05% (with conditions) has been noted by the listing broker; the developer has indicated openness to 5.00%.
     </div>
 
     <div class="three-col">
       <div class="data-card">
-        <div class="data-card-title">Demographics · 1-mile ring</div>
+        <div class="data-card-title">Demographics · 1-mile</div>
         <div class="data-row"><span class="data-label">Population</span><span class="data-value">3,789</span></div>
         <div class="data-row"><span class="data-label">Median HHI</span><span class="data-value">$67,910</span></div>
         <div class="data-row"><span class="data-label">Median age</span><span class="data-value">31.7</span></div>
@@ -365,22 +206,22 @@
         <div class="data-row"><span class="data-label">Pop growth/yr</span><span class="data-value c-best">+1.73%</span></div>
       </div>
       <div class="data-card">
-        <div class="data-card-title">Demographics · 3-mile ring</div>
+        <div class="data-card-title">Demographics · 3-mile</div>
         <div class="data-row"><span class="data-label">Population</span><span class="data-value">46,172</span></div>
         <div class="data-row"><span class="data-label">Median HHI</span><span class="data-value">$99,081</span></div>
         <div class="data-row"><span class="data-label">Average HHI</span><span class="data-value c-best">$133,342</span></div>
         <div class="data-row"><span class="data-label">Median net worth</span><span class="data-value">$204,852</span></div>
         <div class="data-row"><span class="data-label">White collar</span><span class="data-value">79.2%</span></div>
-        <div class="data-row"><span class="data-label">HH growth/yr</span><span class="data-value c-best">+1.31%</span></div>
+        <div class="data-row"><span class="data-label">Pop growth/yr</span><span class="data-value c-best">+0.96%</span></div>
       </div>
       <div class="data-card">
-        <div class="data-card-title">Demographics · 5-mile ring</div>
+        <div class="data-card-title">Demographics · 5-mile</div>
         <div class="data-row"><span class="data-label">Population</span><span class="data-value">149,319</span></div>
         <div class="data-row"><span class="data-label">Median HHI</span><span class="data-value">$107,561</span></div>
         <div class="data-row"><span class="data-label">Average HHI</span><span class="data-value">$150,241</span></div>
         <div class="data-row"><span class="data-label">Pop 2031</span><span class="data-value c-best">159,043 (+9,724)</span></div>
+        <div class="data-row"><span class="data-label">Tapestry (1-mi)</span><span class="data-value">D3, L3, K6, D1</span></div>
         <div class="data-row"><span class="data-label">Pop growth/yr</span><span class="data-value c-best">+1.27%</span></div>
-        <div class="data-row"><span class="data-label">HH growth/yr</span><span class="data-value c-best">+1.58%</span></div>
       </div>
     </div>
 
@@ -390,21 +231,21 @@
         <div class="data-row"><span class="data-label">1-mile: 22.7% of adults</span><span class="data-value mpi-high">MPI 128</span></div>
         <div class="data-row"><span class="data-label">3-mile: 22.1% of adults</span><span class="data-value mpi-high">MPI 124</span></div>
         <div class="data-row"><span class="data-label">5-mile: 21.5% of adults</span><span class="data-value mpi-high">MPI 121</span></div>
-        <div style="font-size:11px;color:#6A6A6A;margin-top:10px;line-height:1.6">MPI 100 = US average. Source: MRI-Simmons via Esri 2026.</div>
+        <div style="font-size:11px;color:var(--charcoal-light);margin-top:8px;line-height:1.6">MPI 100 = US average. Source: MRI-Simmons via Esri 2026.</div>
       </div>
       <div class="data-card">
         <div class="data-card-title">Lease summary</div>
         <div class="data-row"><span class="data-label">Lease type</span><span class="data-value c-best">Absolute NNN</span></div>
         <div class="data-row"><span class="data-label">Landlord obligations</span><span class="data-value c-best">None</span></div>
-        <div class="data-row"><span class="data-label">Guarantor</span><span class="data-value">Chipotle Mexican Grill, Inc.</span></div>
+        <div class="data-row"><span class="data-label">Lease term</span><span class="data-value">16 years (rent commenced Nov 24, 2025)</span></div>
         <div class="data-row"><span class="data-label">Escalations</span><span class="data-value">10% every 5 years</span></div>
+        <div class="data-row"><span class="data-label">Guarantor</span><span class="data-value">Chipotle Mexican Grill, Inc.</span></div>
         <div class="data-row"><span class="data-label">Format</span><span class="data-value">Chipotlane (drive-thru)</span></div>
-        <div class="data-row"><span class="data-label">Competing LOI noted</span><span class="data-value c-warn">Yes — 5.05% w/ conditions</span></div>
       </div>
     </div>
   </div>
 
-  <!-- ======= LANHAM ======= -->
+  <!-- ===== LANHAM ===== -->
   <div id="panel-lanham" class="panel">
     <div class="deal-hero">
       <div class="deal-hero-top">
@@ -414,60 +255,51 @@
         </div>
         <div class="badge-row">
           <span class="badge badge-nn">NN — Not Absolute NNN</span>
-          <span class="badge" style="background:#E6F1FB;color:#185FA5">New 2024</span>
+          <span class="badge badge-open">Opened June 12, 2026</span>
         </div>
       </div>
       <div class="deal-stats">
         <div class="stat-item"><div class="stat-val">$3,162,000</div><div class="stat-lbl">Asking price</div></div>
         <div class="stat-item"><div class="stat-val">5.00%</div><div class="stat-lbl">Cap rate</div></div>
-        <div class="stat-item"><div class="stat-val">$158,100</div><div class="stat-lbl">NOI yr 1</div></div>
+        <div class="stat-item"><div class="stat-val" style="color:#8B5E0A">$158,100</div><div class="stat-lbl">NOI yr 1 (lowest in group)</div></div>
         <div class="stat-item"><div class="stat-val">~15 yrs</div><div class="stat-lbl">Term remaining</div></div>
-        <div class="stat-item"><div class="stat-val">$3,010,476</div><div class="stat-lbl">Target price (5.25%)</div></div>
+        <div class="stat-item"><div class="stat-val">2,325 SF</div><div class="stat-lbl">Building size</div></div>
       </div>
       <div class="deal-links">
-        <a class="link-btn" href="https://www.google.com/maps/search/10611+Greenbelt+Rd+Lanham+MD" target="_blank">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Google Maps
-        </a>
-        <a class="link-btn" href="https://drive.google.com/file/d/1N---DUODS643JtEnMD-5vBywW_e9pQag/view" target="_blank">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-          Demographic Profile 2
-        </a>
-        <a class="link-btn" href="https://drive.google.com/drive/folders/1k2r6ZNgKycIJRbtiDBsyYCw3Wi_uoRSo" target="_blank">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-          Due Diligence Folder
-        </a>
-        <a class="link-btn" href="https://drive.google.com/file/d/1yXBJVOugnPeKDdmA9SnWzNwutoxZN4el/view" target="_blank">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          Tapestry Map
-        </a>
+        <a class="link-btn" href="https://www.google.com/maps/search/10611+Greenbelt+Rd+Lanham+MD" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Google Maps</a>
+        <a class="link-btn" href="https://drive.google.com/file/d/1o3XoPA5YonwBjB5bZzCWQ1llK8TrWYd_/view" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Offering Memorandum</a>
+        <a class="link-btn" href="https://drive.google.com/file/d/1N---DUODS643JtEnMD-5vBywW_e9pQag/view" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Demographic Profile</a>
+        <a class="link-btn" href="https://drive.google.com/file/d/1yXBJVOugnPeKDdmA9SnWzNwutoxZN4el/view" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Tapestry Map</a>
+        <a class="link-btn" href="https://drive.google.com/drive/folders/1k2r6ZNgKycIJRbtiDBsyYCw3Wi_uoRSo" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>Due Diligence Folder</a>
       </div>
     </div>
 
     <div class="alert-banner">
-      <strong>Lease structure:</strong> This is a NN lease — landlord (ShopOne Centers REIT, private) remains responsible for roof, foundations, structural elements, and waterproof membrane per Article 9.1. On a 2024 new build this carries minimal near-term cost, but it is structurally different from the absolute NNN you get in Durham, Southgate, and Tyler. Price accordingly: broker indicated 5.25% ($3.01M) achievable.
+      <strong>Lease structure — NN, not absolute NNN.</strong> Per the OM, the landlord (ShopOne Centers REIT, private) is responsible for foundation, structure, and roof, with transferable builder's warranties in place given 2026 new construction. This is a meaningful structural difference from the absolute NNN deals in this group. The broker has indicated that 5.25% ($3,010,476) may be achievable given this distinction.
     </div>
 
     <div class="alert-banner">
-      <strong>NASA Goddard risk (independently verified):</strong> Federal workforce reductions on Greenbelt Road are more severe than broker described. MD congressional letter notes "thousands" of departures; Trump budget proposed 42% science staff cuts; 13 west campus buildings closing. SSAI contractor at 10210 Greenbelt Rd laid off 296 workers in 2025. Verify independently before proceeding.
+      <strong>NASA Goddard — independently verified risk.</strong> Federal workforce reductions on the Greenbelt Road corridor are more significant than the listing broker described. Maryland's congressional delegation has documented "thousands" of departures from Goddard; the Trump administration budget proposed 42% science staff cuts; 13 west campus buildings are slated to close. A contractor (SSAI) at 10210 Greenbelt Road — same road as the subject — laid off 296 workers in 2025. This warrants independent verification before proceeding.
     </div>
 
     <div class="narrative">
-      <strong>The thesis.</strong> Outparcel to Eastgate Shopping Center anchored by Giant Food (lease through 2033). The DC Metro 3-mile trade area median net worth is <strong>$688,649</strong> — highest in the shortlist. 53.4% of the 1-mile adult population holds a bachelor's degree or higher. Dominant Tapestry segments at 3–5 miles are L1 "Savvy Suburbanites" (upper-middle affluent homeowners) and G3 "Generational Ties" (family households). Chipotle brand purchase rate of 21.7% at 1-mile (MPI 122) is among the best in the group, confirming strong brand affinity in this demographic. Fine dining spend at MPI 113 and California Pizza Kitchen visits at MPI 166 signal food-forward consumer behavior consistent with Chipotle's positioning.
+      This Chipotle opened June 12, 2026 as an outparcel to Eastgate Shopping Center, anchored by Giant Food (lease through 2033). At $158,100, this site carries <strong>the lowest NOI in the shortlist</strong> and is on the lower end for Chipotle locations generally — a function of the NN structure and the Maryland market, not tenant credit. That low base NOI, however, creates a meaningful embedded protection: Chipotle's corporate average unit volume (AUV) was approximately $3.4 million in 2024, and new builds — which go through rigorous internal site underwriting — typically perform at or above chain average. If this location achieves anything near Chipotle's AUV, it would generate significantly more sales volume than what's needed to cover rent, producing a very high coverage ratio. The lower NOI means a lower break-even for Chipotle, reducing renewal risk at option periods.
+
+      The broader trade area context here is the DC federal employment ecosystem — this site sits in the orbit of the federal government's largest concentration of jobs outside Washington proper. Prince George's County and the Greenbelt corridor have historically benefited from stable federal employment anchors including NASA Goddard, the USDA Beltsville Agricultural Center, the Census Bureau HQ, and numerous federal contractor concentrations along I-495 and MD-193. Federal workers in this corridor tend to be higher-educated, higher-income, and career-stable — a profile that correlates well with Chipotle's core customer. The 3-mile trade area median net worth of <strong>$688,649</strong> and median household income of $125,437 reflect this concentration. The dominant Tapestry segments are L1 "Savvy Suburbanites" and G3 "Generational Ties" — upper-middle affluent homeowner households. Chipotle brand purchase rate of 21.7% at 1-mile (MPI 122) is the second-highest in this shortlist. The independently verified NASA Goddard workforce reduction risk is real and warrants verification, but it affects one employer cluster among many in a deeply federal-employment-dependent submarket. The lease commenced June 12, 2026, with 15 years of primary term and 10% escalations every 5 years. Given the NN structure and the Goddard headcount uncertainty, pricing at 5.25% ($3,010,476) or better is warranted during any LOI.
     </div>
 
     <div class="three-col">
       <div class="data-card">
-        <div class="data-card-title">Demographics · 1-mile ring</div>
+        <div class="data-card-title">Demographics · 1-mile</div>
         <div class="data-row"><span class="data-label">Population</span><span class="data-value">10,301</span></div>
         <div class="data-row"><span class="data-label">Median HHI</span><span class="data-value c-best">$113,280</span></div>
         <div class="data-row"><span class="data-label">Median disposable</span><span class="data-value">$87,387</span></div>
         <div class="data-row"><span class="data-label">College educated</span><span class="data-value">53.4%</span></div>
-        <div class="data-row"><span class="data-label">White collar</span><span class="data-value">65.0%</span></div>
         <div class="data-row"><span class="data-label">Median net worth</span><span class="data-value">$432,746</span></div>
+        <div class="data-row"><span class="data-label">Pop growth/yr</span><span class="data-value">+0.31%</span></div>
       </div>
       <div class="data-card">
-        <div class="data-card-title">Demographics · 3-mile ring</div>
+        <div class="data-card-title">Demographics · 3-mile</div>
         <div class="data-row"><span class="data-label">Population</span><span class="data-value">71,132</span></div>
         <div class="data-row"><span class="data-label">Median HHI</span><span class="data-value c-best">$125,437</span></div>
         <div class="data-row"><span class="data-label">Median disposable</span><span class="data-value c-best">$98,828</span></div>
@@ -476,13 +308,13 @@
         <div class="data-row"><span class="data-label">White collar</span><span class="data-value">65.7%</span></div>
       </div>
       <div class="data-card">
-        <div class="data-card-title">Demographics · 5-mile ring</div>
+        <div class="data-card-title">Demographics · 5-mile</div>
         <div class="data-row"><span class="data-label">Population</span><span class="data-value">188,893</span></div>
         <div class="data-row"><span class="data-label">Median HHI</span><span class="data-value">$118,486</span></div>
         <div class="data-row"><span class="data-label">Median disposable</span><span class="data-value">$91,985</span></div>
         <div class="data-row"><span class="data-label">Pop growth/yr</span><span class="data-value c-warn">+0.17%</span></div>
+        <div class="data-row"><span class="data-label">Average HHI</span><span class="data-value">~$118K</span></div>
         <div class="data-row"><span class="data-label">HH growth/yr</span><span class="data-value">+0.27%</span></div>
-        <div class="data-row"><span class="data-label">Avg HHI</span><span class="data-value">~$118K</span></div>
       </div>
     </div>
 
@@ -492,31 +324,31 @@
         <div class="data-row"><span class="data-label">1-mile: 21.7% of adults</span><span class="data-value mpi-high">MPI 122</span></div>
         <div class="data-row"><span class="data-label">3-mile: 21.4% of adults</span><span class="data-value mpi-high">MPI 120</span></div>
         <div class="data-row"><span class="data-label">5-mile: 21.0% of adults</span><span class="data-value mpi-high">MPI 118</span></div>
-        <div style="font-size:11px;color:#6A6A6A;margin-top:10px;line-height:1.6">MPI 100 = US average. Source: MRI-Simmons via Esri 2026.</div>
+        <div style="font-size:11px;color:var(--charcoal-light);margin-top:8px;line-height:1.6">MPI 100 = US average. Source: MRI-Simmons via Esri 2026.</div>
       </div>
       <div class="data-card">
-        <div class="data-card-title">Lease summary</div>
+        <div class="data-card-title">Lease summary — per OM (verify during due diligence)</div>
         <div class="data-row"><span class="data-label">Lease type</span><span class="data-value c-warn">NN — not absolute NNN</span></div>
-        <div class="data-row"><span class="data-label">Landlord obligations</span><span class="data-value c-warn">Roof, structure, foundations</span></div>
+        <div class="data-row"><span class="data-label">Landlord responsible for</span><span class="data-value c-warn">Foundation, structure, roof</span></div>
+        <div class="data-row"><span class="data-label">Builder warranties</span><span class="data-value">Transferable, in place (2026)</span></div>
         <div class="data-row"><span class="data-label">Chipotle pays</span><span class="data-value">100% outparcel property taxes</span></div>
-        <div class="data-row"><span class="data-label">CAM pass-through</span><span class="data-value">$3.50/sf/yr ($8,138/yr)</span></div>
+        <div class="data-row"><span class="data-label">CAM pass-through</span><span class="data-value">$3.50/sf/yr to Chipotle</span></div>
         <div class="data-row"><span class="data-label">Guarantor</span><span class="data-value">Chipotle Mexican Grill, Inc.</span></div>
-        <div class="data-row"><span class="data-label">Landlord entity</span><span class="data-value c-warn">ShopOne REIT (private)</span></div>
       </div>
     </div>
   </div>
 
-  <!-- ======= LEMOORE ======= -->
+  <!-- ===== LEMOORE ===== -->
   <div id="panel-lemoore" class="panel">
     <div class="deal-hero">
       <div class="deal-hero-top">
         <div>
           <div class="deal-name">Chipotle — Lemoore, CA</div>
-          <div class="deal-address">223 W Hanford Armona Rd, Lemoore, CA 93245 · Naval Air Station anchor</div>
+          <div class="deal-address">223 W Hanford Armona Rd, Lemoore, CA 93245 · Fresno MSA · NAS Lemoore</div>
         </div>
         <div class="badge-row">
-          <span class="badge badge-nnn">NNN</span>
-          <span class="badge" style="background:#E6F1FB;color:#185FA5">California</span>
+          <span class="badge badge-nn">NNN (roof: tenant)</span>
+          <span class="badge badge-open">Opened Mar 5, 2026</span>
         </div>
       </div>
       <div class="deal-stats">
@@ -524,75 +356,81 @@
         <div class="stat-item"><div class="stat-val">5.00%</div><div class="stat-lbl">Cap rate</div></div>
         <div class="stat-item"><div class="stat-val">$185,000</div><div class="stat-lbl">NOI yr 1</div></div>
         <div class="stat-item"><div class="stat-val">~15 yrs</div><div class="stat-lbl">Term remaining</div></div>
-        <div class="stat-item"><div class="stat-val">New</div><div class="stat-lbl">Construction</div></div>
+        <div class="stat-item"><div class="stat-val">2,325 SF</div><div class="stat-lbl">Building size</div></div>
       </div>
       <div class="deal-links">
-        <a class="link-btn" href="https://www.google.com/maps/search/223+W+Hanford+Armona+Rd+Lemoore+CA" target="_blank">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Google Maps
-        </a>
-        <a class="link-btn" href="https://drive.google.com/file/d/1dz0LBRwXCzLB3bht5e88FB7j50al01eG/view" target="_blank">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-          Demographic Profile 2
-        </a>
+        <a class="link-btn" href="https://www.google.com/maps/search/223+W+Hanford+Armona+Rd+Lemoore+CA" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Google Maps</a>
+        <a class="link-btn" href="https://drive.google.com/file/d/1eBdmhgjlUDC1lohtvan7K-HTAG_fqqwQ/view" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Offering Memorandum</a>
+        <a class="link-btn" href="https://drive.google.com/file/d/1dz0LBRwXCzLB3bht5e88FB7j50al01eG/view" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Demographic Profile</a>
+        <a class="link-btn" href="https://drive.google.com/file/d/1VbYaT-Ua3xQShj9_9ZUx-CeyRuXGKTVO/view" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Tapestry Map</a>
       </div>
     </div>
 
     <div class="info-banner">
-      <strong>Important data note — NAS Lemoore and Esri methodology:</strong> Esri counts military barracks residents in population totals, but excludes their income from all household income, disposable income, and net worth figures (they are "group quarters" population, not counted as households). The MRI-Simmons consumer behavior data underlying the MPI figures is also a civilian-household survey. As a result, the Esri demographic data for this site understates the true consumer base — NAS Lemoore has approximately 8,000 active duty personnel plus families, many of whom live off-base and constitute real Chipotle demand that does not appear in the model. The MPI of 108 should be read as a conservative floor, not a ceiling. Chipotle sited here knowing the civilian-only model would look modest.
+      <strong>NAS Lemoore — the primary investment rationale.</strong> Naval Air Station Lemoore is the <strong>newest and largest Master Jet Base in the US Navy</strong>, home to the West Coast's entire F/A-18 Hornet and Super Hornet strike fighter force, and the primary transition base for the Navy's F-35C Joint Strike Fighter program. The installation directly employs approximately 12,000 active duty, civilian, and contractor personnel, generates over $947 million in annual economic benefit to the region, and is considered mission-critical infrastructure with long-term federal commitment. Significant F-35C squadron expansion is underway, with NAS Lemoore positioned as the Navy's West Coast F-35 hub. The base also hosts high-value military data center operations. This installation is not subject to the federal civilian workforce reductions affecting other government sites — the Navy's combat aviation mission is expanding, not contracting.
+    </div>
+
+    <div class="info-banner">
+      <strong>Demographic data note — Esri methodology understates the true consumer base.</strong> Esri counts NAS Lemoore barracks residents in population headcounts but excludes their income from all household-based metrics (median HHI, disposable income, net worth). Military personnel in on-base housing are classified as "group quarters" — not households — so their pay does not appear in the income data. The MRI-Simmons consumer behavior survey underlying the Chipotle MPI figures also covers civilian households only. As a result, the demographic data for this site reflects primarily the surrounding civilian community and does not capture the spending power of thousands of military personnel and their families who represent a significant share of the actual Chipotle customer base. The income and MPI figures shown below should be read as a floor, not a ceiling.
     </div>
 
     <div class="narrative">
-      <strong>The thesis.</strong> California scarcity play — NNN Chipotles in CA at any cap rate are rare. NAS Lemoore anchors a stable, recession-resistant federal employment base of approximately 8,000 active duty personnel. Average HHI at 3 miles reaches $110,100 and the 3-mile median net worth is $199,722. The demographic data is structurally depressed by the Esri group quarters exclusion methodology — military incomes (E-4 through O-3 range, roughly $30K–$75K) are not captured in household income figures, making the trade area appear more modest than its actual consumer profile. Home delivery fast food MPI of 125 and Uber Eats MPI of 153 confirm strong digital ordering behavior — consistent with a younger, tech-comfortable military demographic. New construction provides California depreciation benefits for Preet's 54.1% combined passive tax rate.
+      This deal is fundamentally a California NNN asset anchored by a permanent federal military installation — two attributes that are independently scarce and combined are rare at this price point. NNN Chipotle locations in California are infrequently available at any cap rate. The site opened March 5, 2026 as a pad to Lemoore Plaza, a 177,000 SF Save Mart-anchored regional center that ranks in the top 4% of its chain nationwide by traffic (Placer.ai). The lease is NNN with the tenant responsible for roof — the landlord is responsible for structure per the OM. This is a better structure than Lanham but not absolute NNN like Durham, Southgate, or Tyler. Per OM, landlord responsibilities are <strong>structure only</strong> — verify during due diligence. The dominant Tapestry segments include B3 "Military Proximity," G3 "Generational Ties," K5 "Dreambelt," and L1 "Savvy Suburbanites" — a mixed civilian and military community profile. Kings County ranks among the fastest-growing counties in California. California's depreciation rules and the fee-simple building ownership make this site potentially valuable from a tax efficiency standpoint.
     </div>
 
     <div class="three-col">
       <div class="data-card">
-        <div class="data-card-title">Demographics · 1-mile ring</div>
+        <div class="data-card-title">Demographics · 1-mile (civilian HH only — see note above)</div>
         <div class="data-row"><span class="data-label">Population (incl. barracks)</span><span class="data-value">12,033</span></div>
         <div class="data-row"><span class="data-label">Median HHI ⚠ civilian only</span><span class="data-value c-warn">$70,609</span></div>
         <div class="data-row"><span class="data-label">Median age</span><span class="data-value">33.3</span></div>
         <div class="data-row"><span class="data-label">College educated</span><span class="data-value">16.9%</span></div>
-        <div class="data-row"><span class="data-label">Dined Out MPI</span><span class="data-value c-warn">88 (below avg)</span></div>
         <div class="data-row"><span class="data-label">Home delivery MPI</span><span class="data-value">125</span></div>
+        <div class="data-row"><span class="data-label">Tapestry</span><span class="data-value">B3, G3, K5, L1</span></div>
       </div>
       <div class="data-card">
-        <div class="data-card-title">Demographics · 3-mile ring</div>
+        <div class="data-card-title">Demographics · 3-mile (civilian HH only)</div>
         <div class="data-row"><span class="data-label">Population</span><span class="data-value">29,298</span></div>
         <div class="data-row"><span class="data-label">Median HHI ⚠ civilian only</span><span class="data-value c-warn">$86,168</span></div>
         <div class="data-row"><span class="data-label">Average HHI</span><span class="data-value">$110,100</span></div>
         <div class="data-row"><span class="data-label">Median net worth</span><span class="data-value">$199,722</span></div>
-        <div class="data-row"><span class="data-label">White collar</span><span class="data-value">45.4%</span></div>
         <div class="data-row"><span class="data-label">HH growth/yr</span><span class="data-value">+0.54%</span></div>
+        <div class="data-row"><span class="data-label">Chipotle MPI (civilian)</span><span class="data-value" style="color:#2D5C42;font-weight:600">111 (floor, not ceiling)</span></div>
       </div>
       <div class="data-card">
-        <div class="data-card-title">Demographics · 5-mile ring</div>
-        <div class="data-row"><span class="data-label">Population</span><span class="data-value">36,390</span></div>
-        <div class="data-row"><span class="data-label">Median HHI ⚠ civilian only</span><span class="data-value c-warn">$83,838</span></div>
-        <div class="data-row"><span class="data-label">Hispanic</span><span class="data-value">49.3% (1-mi)</span></div>
-        <div class="data-row"><span class="data-label">Diversity index</span><span class="data-value">86.3 (very high)</span></div>
-        <div class="data-row"><span class="data-label">Pop growth/yr</span><span class="data-value">+0.28%</span></div>
-        <div class="data-row"><span class="data-label">NAS Lemoore</span><span class="data-value">~8,000 active duty</span></div>
+        <div class="data-card-title">NAS Lemoore installation</div>
+        <div class="data-row"><span class="data-label">Designation</span><span class="data-value">Largest Master Jet Base, US Navy</span></div>
+        <div class="data-row"><span class="data-label">Personnel</span><span class="data-value">12,000+ active, civilian, contractors</span></div>
+        <div class="data-row"><span class="data-label">Mission</span><span class="data-value">F/A-18 + F-35C West Coast hub</span></div>
+        <div class="data-row"><span class="data-label">F-35C expansion</span><span class="data-value">Ongoing (growing headcount)</span></div>
+        <div class="data-row"><span class="data-label">Economic impact</span><span class="data-value">$947M+ annually to region</span></div>
+        <div class="data-row"><span class="data-label">Mission trajectory</span><span class="data-value c-best">Expanding, not contracting</span></div>
       </div>
     </div>
 
-    <div style="background:#EAF3FE;border:0.5px solid rgba(24,95,165,0.2);border-left:3px solid #378ADD;border-radius:8px;padding:12px 16px;font-size:12px;color:#185FA5;margin-bottom:16px;line-height:1.7">
-      <strong style="color:#0C447C">⚠ Data interpretation note — all income and MPI figures above are structurally understated.</strong>
-      Esri's methodology counts NAS Lemoore barracks residents in the <em>population</em> headcount but excludes their income from all <em>household</em>-based metrics (median HHI, disposable income, net worth). Military personnel living in on-base barracks are classified as "group quarters" — not households — so their pay is invisible to the income model. The MRI-Simmons consumer survey underlying the Chipotle brand MPI is similarly a civilian-household survey; on-base consumers are not sampled. The practical result: a trade area with ~8,000 active duty personnel has its consumer spending power systematically undercounted by the Esri data. The income figures above represent a floor, not a ceiling — actual spending power in this trade area is meaningfully higher than the numbers suggest.
+    <div class="data-card" style="margin-bottom:14px">
+      <div class="data-card-title">Chipotle brand MPI · "Bought Chipotle Last 6 Mo" (civilian households only — true demand is higher)</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:4px">
+        <div class="data-row"><span class="data-label">1-mile: 19.1%</span><span class="data-value" style="color:#2D5C42;font-weight:600">MPI 108</span></div>
+        <div class="data-row"><span class="data-label">3-mile: 19.7%</span><span class="data-value" style="color:#2D5C42;font-weight:600">MPI 111</span></div>
+        <div class="data-row"><span class="data-label">5-mile: 19.4%</span><span class="data-value" style="color:#2D5C42;font-weight:600">MPI 109</span></div>
+      </div>
+      <div style="font-size:11px;color:#185FA5;margin-top:8px;line-height:1.6;border-top:0.5px solid var(--border);padding-top:8px">These figures reflect civilian households only. NAS Lemoore's 12,000+ military personnel and their families are not captured in MRI-Simmons survey methodology — actual Chipotle demand in this trade area is meaningfully higher than these MPIs indicate.</div>
     </div>
 
-    <div class="data-card" style="margin-bottom:16px">
-      <div class="data-card-title">Chipotle brand MPI · "Bought Chipotle Last 6 Mo" (civilian households only)</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:4px">
-        <div class="data-row"><span class="data-label">1-mile: 19.1%</span><span class="data-value" style="color:#2D5C42">MPI 108</span></div>
-        <div class="data-row"><span class="data-label">3-mile: 19.7%</span><span class="data-value" style="color:#2D5C42">MPI 111</span></div>
-        <div class="data-row"><span class="data-label">5-mile: 19.4%</span><span class="data-value" style="color:#2D5C42">MPI 109</span></div>
-      </div>
-      <div style="font-size:11px;color:#6A6A6A;margin-top:10px;line-height:1.6">These figures reflect civilian households only — on-base military consumers are not captured by MRI-Simmons survey methodology. True Chipotle demand is likely higher given NAS Lemoore's 8,000+ active duty population.</div>
+    <div class="data-card" style="margin-bottom:14px">
+      <div class="data-card-title">Lease summary — per OM (verify full lease during due diligence)</div>
+      <div class="data-row"><span class="data-label">Lease type</span><span class="data-value">NNN (not absolute NNN)</span></div>
+      <div class="data-row"><span class="data-label">Roof responsibility</span><span class="data-value c-best">Tenant</span></div>
+      <div class="data-row"><span class="data-label">Structure responsibility</span><span class="data-value c-warn">Landlord — per OM</span></div>
+      <div class="data-row"><span class="data-label">All other obligations</span><span class="data-value c-best">Tenant</span></div>
+      <div class="data-row"><span class="data-label">Rent commencement</span><span class="data-value">March 5, 2026</span></div>
+      <div class="data-row"><span class="data-label">Guarantor</span><span class="data-value">Chipotle Mexican Grill, Inc.</span></div>
+      <div style="font-size:11px;color:var(--charcoal-light);margin-top:8px;line-height:1.6">Full lease review required during due diligence to confirm exact landlord/tenant responsibilities. Confirm insurance reimbursability with Sean Cox (Hanley Investment, 844.585.7648).</div>
     </div>
   </div>
 
-  <!-- ======= SOUTHGATE ======= -->
+  <!-- ===== SOUTHGATE ===== -->
   <div id="panel-southgate" class="panel">
     <div class="deal-hero">
       <div class="deal-hero-top">
@@ -602,48 +440,48 @@
         </div>
         <div class="badge-row">
           <span class="badge badge-nnn">Absolute NNN</span>
-          <span class="badge" style="background:#F1EFE8;color:#5F5E5A">Stable yield</span>
+          <span class="badge badge-soon">Opening est. 30–45 days</span>
         </div>
       </div>
       <div class="deal-stats">
         <div class="stat-item"><div class="stat-val">$3,520,000</div><div class="stat-lbl">Asking price</div></div>
         <div class="stat-item"><div class="stat-val">5.00%</div><div class="stat-lbl">Cap rate</div></div>
         <div class="stat-item"><div class="stat-val">$175,770</div><div class="stat-lbl">NOI yr 1</div></div>
-        <div class="stat-item"><div class="stat-val">~15 yrs</div><div class="stat-lbl">Term remaining</div></div>
-        <div class="stat-item"><div class="stat-val">New</div><div class="stat-lbl">Construction</div></div>
+        <div class="stat-item"><div class="stat-val">15 yrs</div><div class="stat-lbl">Primary term</div></div>
+        <div class="stat-item"><div class="stat-val">2,325 SF</div><div class="stat-lbl">Building size</div></div>
       </div>
       <div class="deal-links">
-        <a class="link-btn" href="https://www.google.com/maps/search/16200+Fort+St+Southgate+MI" target="_blank">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Google Maps
-        </a>
-        <a class="link-btn" href="https://drive.google.com/file/d/1-IFpIA4rcZ14iDGxRcflG32VmLR34brt/view" target="_blank">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-          Demographic Profile 2
-        </a>
+        <a class="link-btn" href="https://www.google.com/maps/search/16200+Fort+St+Southgate+MI" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Google Maps</a>
+        <a class="link-btn" href="https://drive.google.com/file/d/1WvjQx8guilkC9PZ88WNZ_nhr4D6s-3xu/view" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Offering Memorandum</a>
+        <a class="link-btn" href="https://drive.google.com/file/d/1-IFpIA4rcZ14iDGxRcflG32VmLR34brt/view" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Demographic Profile</a>
+        <a class="link-btn" href="https://drive.google.com/file/d/1LEwEfhnhNDySTRcp0fdXq42E9mztwpmD/view" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Tapestry Map</a>
       </div>
     </div>
 
     <div class="alert-banner">
-      <strong>Key concern — Chipotle brand affinity is the weakest in the shortlist.</strong> The "Bought Chipotle Last 6 Mo" MPI is 82–83 across all three rings, meaning this trade area buys Chipotle 17–18% less frequently than the US average. This is a Arby's (MPI 146–152), Dairy Queen (MPI 127–133), and Cracker Barrel (MPI 119–124) market. The population is also declining at 0.53%/yr at 1-mile. This is a coupon-clipping yield play, not a growth story.
+      <strong>Not yet open.</strong> Rent commencement is July 1, 2026 — the store is estimated to open within 30–45 days. Verify current construction status and opening timeline with Alex Geanakos (JLL, 203.451.6856) before proceeding. Rent commencement date is described in the OM as "subject to final confirmation."
+    </div>
+
+    <div class="alert-banner">
+      <strong>Chipotle brand affinity is below average in this trade area.</strong> The "Bought Chipotle Last 6 Mo" MPI runs 82–83 across all three rings — meaning residents here buy Chipotle 17–18% less frequently than the US average. The trade area over-indexes on Arby's (MPI 146–152), Dairy Queen (MPI 127–133), and Cracker Barrel (MPI 121–124). Population is also declining at 0.53%/yr at the 1-mile ring.
     </div>
 
     <div class="narrative">
-      <strong>The thesis.</strong> Stability play in the Detroit Downriver market on absolute NNN terms — the cleanest lease structure in the shortlist alongside Durham. Drive-thru and curbside fast food MPI of 109–113 shows above-average propensity for the format, and the tenant (Chipotle) chose this site knowing the demographics. Population is declining at 1-mile but stabilizing at 3–5 miles. Working-class demographic with median age 41.8 and high home ownership. This deal works as a pure income-and-depreciation position, but Preet should weigh it against markets with stronger brand alignment and demographic tailwinds.
+      This build-to-suit Chipotle is an outparcel to Extra Space Storage and Meijer, which together generate 2.1 million annual visitors (Placer.ai). Fort Street carries over 42,000 vehicles per day. The site is 11 miles south of Detroit and benefits from 187,000 residents within 5 miles. The lease is <strong>Absolute NNN</strong> with zero landlord responsibilities. The dominant Tapestry segments in the 3-5 mile ring are K2 "Middle Ground" and K4 "Classic Comfort" — established working-class suburban homeowner households. Population at 1-mile is declining (-0.53%/yr) but stabilizing at 3–5 miles. Income growth is projected at 3.16%/yr to 2031 even as headcount flattens. The lease structure is clean and the rent economics are straightforward; the demographic profile and brand affinity data suggest this is a steady income play rather than a growth story. Lease structure and rent schedule should be verified in full during due diligence.
     </div>
 
     <div class="three-col">
       <div class="data-card">
-        <div class="data-card-title">Demographics · 1-mile ring</div>
+        <div class="data-card-title">Demographics · 1-mile</div>
         <div class="data-row"><span class="data-label">Population</span><span class="data-value">17,385</span></div>
         <div class="data-row"><span class="data-label">Median HHI</span><span class="data-value">$72,367</span></div>
         <div class="data-row"><span class="data-label">Median disposable</span><span class="data-value">$58,061</span></div>
         <div class="data-row"><span class="data-label">Median age</span><span class="data-value">41.8</span></div>
         <div class="data-row"><span class="data-label">Pop trend</span><span class="data-value c-bad">-0.53%/yr</span></div>
-        <div class="data-row"><span class="data-label">Owner occupied</span><span class="data-value">78.2%</span></div>
+        <div class="data-row"><span class="data-label">Tapestry</span><span class="data-value">K2, K4, E3, I3</span></div>
       </div>
       <div class="data-card">
-        <div class="data-card-title">Demographics · 3-mile ring</div>
+        <div class="data-card-title">Demographics · 3-mile</div>
         <div class="data-row"><span class="data-label">Population</span><span class="data-value">101,449</span></div>
         <div class="data-row"><span class="data-label">Median HHI</span><span class="data-value">$71,853</span></div>
         <div class="data-row"><span class="data-label">Median net worth</span><span class="data-value">$233,980</span></div>
@@ -652,79 +490,85 @@
         <div class="data-row"><span class="data-label">Drive-thru MPI</span><span class="data-value">113</span></div>
       </div>
       <div class="data-card">
-        <div class="data-card-title">Demographics · 5-mile ring</div>
+        <div class="data-card-title">Demographics · 5-mile</div>
         <div class="data-row"><span class="data-label">Population</span><span class="data-value">219,159</span></div>
         <div class="data-row"><span class="data-label">Median HHI</span><span class="data-value">$69,980</span></div>
         <div class="data-row"><span class="data-label">Pop trend</span><span class="data-value c-bad">-0.43%/yr</span></div>
-        <div class="data-row"><span class="data-label">Income growth/yr</span><span class="data-value c-best">+3.16%</span></div>
-        <div class="data-row"><span class="data-label">White</span><span class="data-value">82.2% (1-mi)</span></div>
-        <div class="data-row"><span class="data-label">Arby's MPI (1-mi)</span><span class="data-value">152 (tells the story)</span></div>
+        <div class="data-row"><span class="data-label">Income growth/yr</span><span class="data-value c-best">+3.16% to 2031</span></div>
+        <div class="data-row"><span class="data-label">Fort St traffic</span><span class="data-value">42,000+ VPD</span></div>
+        <div class="data-row"><span class="data-label">Meijer annual visits</span><span class="data-value">2.1M (Placer.ai)</span></div>
       </div>
     </div>
 
-    <div class="data-card" style="margin-bottom:16px">
-      <div class="data-card-title">Chipotle brand MPI · "Bought Chipotle Last 6 Mo"</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:4px">
-        <div class="data-row"><span class="data-label">1-mile: 14.7%</span><span class="data-value mpi-low">MPI 83</span></div>
-        <div class="data-row"><span class="data-label">3-mile: 14.8%</span><span class="data-value mpi-low">MPI 83</span></div>
-        <div class="data-row"><span class="data-label">5-mile: 14.7%</span><span class="data-value mpi-low">MPI 82</span></div>
+    <div class="two-col">
+      <div class="data-card">
+        <div class="data-card-title">Chipotle brand MPI · "Bought Chipotle Last 6 Mo"</div>
+        <div class="data-row"><span class="data-label">1-mile: 14.7% of adults</span><span class="data-value mpi-low">MPI 83</span></div>
+        <div class="data-row"><span class="data-label">3-mile: 14.8% of adults</span><span class="data-value mpi-low">MPI 83</span></div>
+        <div class="data-row"><span class="data-label">5-mile: 14.7% of adults</span><span class="data-value mpi-low">MPI 82</span></div>
+        <div style="font-size:11px;color:var(--charcoal-light);margin-top:8px;line-height:1.6">Below-average Chipotle affinity at all rings. Over-indexes on Arby's (MPI 152), Dairy Queen (133), Cracker Barrel (124). MPI 100 = US average.</div>
       </div>
-      <div style="font-size:11px;color:#993C1D;margin-top:10px;line-height:1.6">Below-average Chipotle brand affinity at all three rings — the only deal in the shortlist with consistent sub-100 MPIs. This trade area over-indexes on Arby's (MPI 146–152), Dairy Queen (MPI 127–133), and Cracker Barrel (MPI 121–124).</div>
+      <div class="data-card">
+        <div class="data-card-title">Lease summary — per OM (verify full lease during due diligence)</div>
+        <div class="data-row"><span class="data-label">Lease type</span><span class="data-value c-best">Absolute NNN</span></div>
+        <div class="data-row"><span class="data-label">Landlord obligations</span><span class="data-value c-best">None</span></div>
+        <div class="data-row"><span class="data-label">Rent commencement</span><span class="data-value">July 1, 2026 (est.)</span></div>
+        <div class="data-row"><span class="data-label">Primary term</span><span class="data-value">15 years</span></div>
+        <div class="data-row"><span class="data-label">Escalations</span><span class="data-value">10% every 5 years</span></div>
+        <div class="data-row"><span class="data-label">Guarantor</span><span class="data-value">Chipotle Mexican Grill, Inc.</span></div>
+      </div>
     </div>
   </div>
 
-  <!-- ======= TYLER ======= -->
+  <!-- ===== TYLER ===== -->
   <div id="panel-tyler" class="panel">
     <div class="deal-hero">
       <div class="deal-hero-top">
         <div>
           <div class="deal-name">Chipotle — Tyler, TX</div>
-          <div class="deal-address">1530 S SW Loop 323, Tyler, TX 75701 · East Texas healthcare hub</div>
+          <div class="deal-address">NWQ Loop 323 &amp; Earl Campbell Pkwy, Tyler, TX 75709 · East Texas healthcare hub</div>
         </div>
         <div class="badge-row">
           <span class="badge badge-nnn">Absolute NNN</span>
           <span class="badge badge-oz">Opportunity Zone</span>
+          <span class="badge badge-soon">Est. opening Q4 2026</span>
         </div>
       </div>
       <div class="deal-stats">
         <div class="stat-item"><div class="stat-val">$3,997,000</div><div class="stat-lbl">Asking price</div></div>
-        <div class="stat-item"><div class="stat-val">4.75%</div><div class="stat-lbl">Cap rate (tightest)</div></div>
+        <div class="stat-item"><div class="stat-val">4.75%</div><div class="stat-lbl">Cap rate</div></div>
         <div class="stat-item"><div class="stat-val">$190,000</div><div class="stat-lbl">NOI yr 1</div></div>
-        <div class="stat-item"><div class="stat-val">~15 yrs</div><div class="stat-lbl">Term remaining</div></div>
-        <div class="stat-item"><div class="stat-val">New</div><div class="stat-lbl">Construction</div></div>
+        <div class="stat-item"><div class="stat-val">15 yrs</div><div class="stat-lbl">Primary term</div></div>
+        <div class="stat-item"><div class="stat-val">2,385 SF</div><div class="stat-lbl">Building size</div></div>
       </div>
       <div class="deal-links">
-        <a class="link-btn" href="https://www.google.com/maps/search/1530+S+SW+Loop+323+Tyler+TX" target="_blank">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Google Maps
-        </a>
-        <a class="link-btn" href="https://drive.google.com/file/d/1-lBFM1s_MAVfYtKfYTUoh136LeHdOOjM/view" target="_blank">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-          Demographic Profile 2
-        </a>
+        <a class="link-btn" href="https://www.google.com/maps/search/Loop+323+Earl+Campbell+Pkwy+Tyler+TX" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Google Maps</a>
+        <a class="link-btn" href="https://drive.google.com/file/d/1fIIbGZfQVvvMx0W8unl93L9U1MS3MeGu/view" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Offering Memorandum</a>
+        <a class="link-btn" href="https://drive.google.com/file/d/1-lBFM1s_MAVfYtKfYTUoh136LeHdOOjM/view" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Demographic Profile</a>
+        <a class="link-btn" href="https://drive.google.com/file/d/1573i26L93eWmKxBdpREeNULd0Tkz_XxH/view" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Tapestry Map</a>
       </div>
     </div>
 
     <div class="alert-banner">
-      <strong>Opportunity Zone — CPA validation required.</strong> OZ benefits require eligible capital gains and reinvestment within 180 days. Preet should verify with his CPA before weighting this as a material advantage. Also note: 4.75% is the tightest cap in the group and the 1-mile immediate trade area is the weakest demographic profile in the shortlist (median HHI $53,395; Dined Out MPI 79).
+      <strong>Not yet open.</strong> Rent commencement is estimated Q4 2026. Earl Campbell Pkwy is a new road currently carrying approximately 4,371 VPD — traffic will mature as the surrounding Bellwood development (±543 acres of mixed-use) fills out. The OZ designation should be verified by your CPA against your specific eligible gain and the 180-day reinvestment window. This is the highest-priced deal in the group at 4.75%, with the most speculative near-term traffic position.
     </div>
 
     <div class="narrative">
-      <strong>The thesis.</strong> Growth play anchored by the Tyler healthcare economy — UT Health, Christus Trinity, and a large regional medical corridor drive significant daytime population and disposable income that doesn't show up in the residential 1-mile data. The 5-mile population is growing at <strong>0.75% annually</strong>, adding ~4,450 people by 2031, and the 5-mile average HHI reaches $98,964. Earl Campbell Pkwy (the site's immediate road) currently carries only 4,371 VPD as a new road — expected to mature significantly as the surrounding Mosaic development fills out. Lease is Absolute NNN: landlord has zero obligations. The OZ designation could provide meaningful tax benefits if Preet has eligible gains — but this requires CPA verification and is not a reason to accept a compressed cap on a speculative traffic position.
+      This site sits at the entry to the 543-acre Bellwood mixed-use development in West Tyler, directly across Loop 323 from Tyler Junior College's West Campus (thousands of students and faculty). The Tyler healthcare economy — anchored by CHRISTUS Mother Frances, UT Health East Texas, and Baylor Scott &amp; White — collectively employs over 19,000 workers in the surrounding trade area. Loop 323 carries more than 36,000 vehicles per day. Sam's Club is adjacent and Brookshire's (a regional grocer) is breaking ground nearby, creating dual grocery anchors in the corridor. The lease is <strong>Absolute NNN</strong> — zero landlord responsibilities, roof and structure maintained by the tenant. The 5-mile trade area is growing at 0.75%/yr and 5-mile average HHI reaches $98,964 — the 1-mile ($53,395 median) understates the full market because the site draws from a much wider healthcare and retail catchment. The OM cites average HHI of $172,969 within 1 mile, which reflects the income of employees working in the immediate area, not residents. Verify Opportunity Zone status and your CPA's assessment of applicable gains before weighting this as a tax play. Full lease review required during due diligence.
     </div>
 
     <div class="three-col">
       <div class="data-card">
-        <div class="data-card-title">Demographics · 1-mile ring</div>
+        <div class="data-card-title">Demographics · 1-mile</div>
         <div class="data-row"><span class="data-label">Population</span><span class="data-value">3,747</span></div>
         <div class="data-row"><span class="data-label">Median HHI</span><span class="data-value c-bad">$53,395</span></div>
-        <div class="data-row"><span class="data-label">Dined Out MPI</span><span class="data-value c-bad">79 (lowest in group)</span></div>
-        <div class="data-row"><span class="data-label">Black alone</span><span class="data-value">50.3%</span></div>
+        <div class="data-row"><span class="data-label">Dined Out MPI</span><span class="data-value c-bad">79 (below avg)</span></div>
         <div class="data-row"><span class="data-label">Pop growth/yr</span><span class="data-value">+0.59%</span></div>
         <div class="data-row"><span class="data-label">Home delivery MPI</span><span class="data-value">129</span></div>
+        <div class="data-row"><span class="data-label">Tapestry</span><span class="data-value">I6, E4, K4, D1</span></div>
       </div>
       <div class="data-card">
-        <div class="data-card-title">Demographics · 3-mile ring</div>
+        <div class="data-card-title">Demographics · 3-mile</div>
         <div class="data-row"><span class="data-label">Population</span><span class="data-value">48,107</span></div>
         <div class="data-row"><span class="data-label">Median HHI</span><span class="data-value">$67,657</span></div>
         <div class="data-row"><span class="data-label">Average HHI</span><span class="data-value">$94,266</span></div>
@@ -733,7 +577,7 @@
         <div class="data-row"><span class="data-label">Fast food 9+/mo MPI</span><span class="data-value">117</span></div>
       </div>
       <div class="data-card">
-        <div class="data-card-title">Demographics · 5-mile ring</div>
+        <div class="data-card-title">Demographics · 5-mile</div>
         <div class="data-row"><span class="data-label">Population</span><span class="data-value">116,229</span></div>
         <div class="data-row"><span class="data-label">Median HHI</span><span class="data-value">$70,573</span></div>
         <div class="data-row"><span class="data-label">Average HHI</span><span class="data-value">$98,964</span></div>
@@ -743,172 +587,93 @@
       </div>
     </div>
 
-    <div class="data-card" style="margin-bottom:16px">
-      <div class="data-card-title">Chipotle brand MPI · "Bought Chipotle Last 6 Mo"</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:4px">
-        <div class="data-row"><span class="data-label">1-mile: 16.0%</span><span class="data-value c-warn">MPI 90</span></div>
-        <div class="data-row"><span class="data-label">3-mile: 16.4%</span><span class="data-value c-warn">MPI 92</span></div>
-        <div class="data-row"><span class="data-label">5-mile: 16.4%</span><span class="data-value c-warn">MPI 92</span></div>
+    <div class="two-col">
+      <div class="data-card">
+        <div class="data-card-title">Chipotle brand MPI · "Bought Chipotle Last 6 Mo"</div>
+        <div class="data-row"><span class="data-label">1-mile: 16.0% of adults</span><span class="data-value mpi-mid">MPI 90</span></div>
+        <div class="data-row"><span class="data-label">3-mile: 16.4% of adults</span><span class="data-value mpi-mid">MPI 92</span></div>
+        <div class="data-row"><span class="data-label">5-mile: 16.4% of adults</span><span class="data-value mpi-mid">MPI 92</span></div>
+        <div style="font-size:11px;color:var(--charcoal-light);margin-top:8px;line-height:1.6">Slightly below average. The 1-mile immediately adjacent population skews toward lower-income demographics. The healthcare corridor at 3–5 miles lifts the picture. MPI 100 = US average.</div>
       </div>
-      <div style="font-size:11px;color:#6A6A6A;margin-top:10px;line-height:1.6">Below-average but not alarming. The 1-mile immediately adjacent population is majority Black/Hispanic with lower income — not historically Chipotle's core demographic. The healthcare corridor at 3–5 miles lifts the picture somewhat.</div>
+      <div class="data-card">
+        <div class="data-card-title">Lease summary — per OM (verify full lease during due diligence)</div>
+        <div class="data-row"><span class="data-label">Lease type</span><span class="data-value c-best">Absolute NNN</span></div>
+        <div class="data-row"><span class="data-label">Landlord obligations</span><span class="data-value c-best">None</span></div>
+        <div class="data-row"><span class="data-label">Rent commencement</span><span class="data-value">Est. Q4 2026</span></div>
+        <div class="data-row"><span class="data-label">Primary term</span><span class="data-value">15 years</span></div>
+        <div class="data-row"><span class="data-label">Escalations</span><span class="data-value">10% every 5 years</span></div>
+        <div class="data-row"><span class="data-label">OZ designation</span><span class="data-value c-warn">Verify with CPA</span></div>
+      </div>
     </div>
   </div>
 
-  <!-- ======= COMPARE ======= -->
+  <!-- ===== COMPARE ===== -->
   <div id="panel-compare" class="panel">
-
     <p class="section-h">Side-by-side comparison · All five deals</p>
-
-    <div class="compare-wrap" style="margin-bottom:24px">
+    <div class="compare-wrap">
       <table class="compare-table">
         <thead>
           <tr>
-            <th>Deal</th>
-            <th>Price</th>
-            <th>Cap rate</th>
-            <th>NOI yr 1</th>
-            <th>Lease type</th>
-            <th>LL responsible for</th>
-            <th>Construction</th>
-            <th>Term left</th>
-            <th>5-mi pop growth</th>
+            <th>Deal</th><th>Price</th><th>Cap</th><th>NOI yr 1</th><th>Lease type</th>
+            <th>LL responsible for</th><th>Opening</th><th>Term</th><th>5-mi pop growth</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Durham NC ★</td>
-            <td>$3,776,000</td>
-            <td class="c-warn">4.90%</td>
-            <td>$185,000</td>
-            <td class="c-best">Absolute NNN</td>
-            <td class="c-best">Nothing</td>
-            <td class="c-best">New 2025</td>
-            <td class="c-best">~15.4 yrs</td>
-            <td class="c-best">+1.27%/yr</td>
+            <td>Durham NC</td><td>$3,776,000</td><td class="c-warn">4.90%</td><td>$185,000</td>
+            <td class="c-best">Absolute NNN</td><td class="c-best">Nothing</td>
+            <td class="c-best">Nov 24, 2025 ✓</td><td class="c-best">16 yrs</td><td class="c-best">+1.27%/yr</td>
           </tr>
           <tr>
-            <td>Lanham MD</td>
-            <td class="c-best">$3,162,000</td>
-            <td>5.00%</td>
-            <td class="c-bad">$158,100</td>
-            <td class="c-warn">NN only</td>
-            <td class="c-bad">Roof, structure, foundations</td>
-            <td class="c-best">New 2024</td>
-            <td>~15 yrs</td>
-            <td>+0.17%/yr</td>
+            <td>Lanham MD</td><td class="c-best">$3,162,000</td><td>5.00%</td><td class="c-bad">$158,100</td>
+            <td class="c-warn">NN only</td><td class="c-bad">Foundation, structure, roof</td>
+            <td class="c-best">Jun 12, 2026 ✓</td><td>15 yrs</td><td>+0.17%/yr</td>
           </tr>
           <tr>
-            <td>Lemoore CA</td>
-            <td>$3,700,000</td>
-            <td>5.00%</td>
-            <td>$185,000</td>
-            <td class="c-best">NNN</td>
-            <td class="c-best">Nothing (confirmed)</td>
-            <td class="c-best">New</td>
-            <td>~15 yrs</td>
-            <td>+0.28%/yr</td>
+            <td>Lemoore CA</td><td>$3,700,000</td><td>5.00%</td><td>$185,000</td>
+            <td>NNN (roof: tenant)</td><td class="c-warn">Structure — per OM</td>
+            <td class="c-best">Mar 5, 2026 ✓</td><td>15 yrs</td><td>+0.28%/yr</td>
           </tr>
           <tr>
-            <td>Southgate MI</td>
-            <td>$3,520,000</td>
-            <td>5.00%</td>
-            <td>$175,770</td>
-            <td class="c-best">Absolute NNN</td>
-            <td class="c-best">Nothing</td>
-            <td class="c-best">New</td>
-            <td>~15 yrs</td>
-            <td class="c-bad">-0.43%/yr</td>
+            <td>Southgate MI</td><td>$3,520,000</td><td>5.00%</td><td>$175,770</td>
+            <td class="c-best">Absolute NNN</td><td class="c-best">Nothing</td>
+            <td class="c-warn">Est. 30–45 days</td><td>15 yrs</td><td class="c-bad">-0.43%/yr</td>
           </tr>
           <tr>
-            <td>Tyler TX</td>
-            <td class="c-bad">$3,997,000</td>
-            <td class="c-bad">4.75%</td>
-            <td class="c-best">$190,000</td>
-            <td class="c-best">Absolute NNN</td>
-            <td class="c-best">Nothing</td>
-            <td class="c-best">New</td>
-            <td>~15 yrs</td>
-            <td>+0.75%/yr</td>
+            <td>Tyler TX</td><td class="c-bad">$3,997,000</td><td class="c-bad">4.75%</td><td class="c-best">$190,000</td>
+            <td class="c-best">Absolute NNN</td><td class="c-best">Nothing</td>
+            <td class="c-warn">Est. Q4 2026</td><td>15 yrs</td><td class="c-best">+0.75%/yr</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <p class="section-h">Chipotle brand MPI — "Bought Chipotle Last 6 Mo" — all five deals</p>
-    <p style="font-size:12px;color:#6A6A6A;margin-bottom:12px">Source: MRI-Simmons via Esri 2026. MPI 100 = US average. Lemoore figures reflect civilian households only (on-base military not captured).</p>
-
-    <div class="compare-wrap" style="margin-bottom:24px">
+    <p class="section-h">Chipotle brand MPI — "Bought Chipotle Last 6 Mo" — Esri 2026</p>
+    <p style="font-size:12px;color:var(--charcoal-light);margin-bottom:10px">MPI 100 = US average. Lemoore figures reflect civilian households only — on-base military consumers not captured by MRI-Simmons methodology.</p>
+    <div class="compare-wrap">
       <table class="mpi-table">
         <thead>
-          <tr>
-            <th>Deal</th>
-            <th>1-mile rate</th>
-            <th>1-mi MPI</th>
-            <th>3-mile rate</th>
-            <th>3-mi MPI</th>
-            <th>5-mile rate</th>
-            <th>5-mi MPI</th>
-          </tr>
+          <tr><th>Deal</th><th>1-mile rate</th><th>1-mi MPI</th><th>3-mile rate</th><th>3-mi MPI</th><th>5-mile rate</th><th>5-mi MPI</th></tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Durham NC ★</td>
-            <td>22.7%</td>
-            <td class="mpi-high">128</td>
-            <td>22.1%</td>
-            <td class="mpi-high">124</td>
-            <td>21.5%</td>
-            <td class="mpi-high">121</td>
-          </tr>
-          <tr>
-            <td>Lanham MD</td>
-            <td>21.7%</td>
-            <td class="mpi-high">122</td>
-            <td>21.4%</td>
-            <td class="mpi-high">120</td>
-            <td>21.0%</td>
-            <td class="mpi-high">118</td>
-          </tr>
-          <tr>
-            <td>Lemoore CA*</td>
-            <td>19.1%</td>
-            <td style="color:#2D5C42;font-weight:600">108</td>
-            <td>19.7%</td>
-            <td style="color:#2D5C42;font-weight:600">111</td>
-            <td>19.4%</td>
-            <td style="color:#2D5C42;font-weight:600">109</td>
-          </tr>
-          <tr>
-            <td>Tyler TX</td>
-            <td>16.0%</td>
-            <td class="c-warn">90</td>
-            <td>16.4%</td>
-            <td class="c-warn">92</td>
-            <td>16.4%</td>
-            <td class="c-warn">92</td>
-          </tr>
-          <tr>
-            <td>Southgate MI</td>
-            <td>14.7%</td>
-            <td class="mpi-low">83</td>
-            <td>14.8%</td>
-            <td class="mpi-low">83</td>
-            <td>14.7%</td>
-            <td class="mpi-low">82</td>
-          </tr>
+          <tr><td>Durham NC</td><td>22.7%</td><td class="mpi-high">128</td><td>22.1%</td><td class="mpi-high">124</td><td>21.5%</td><td class="mpi-high">121</td></tr>
+          <tr><td>Lanham MD</td><td>21.7%</td><td class="mpi-high">122</td><td>21.4%</td><td class="mpi-high">120</td><td>21.0%</td><td class="mpi-high">118</td></tr>
+          <tr><td>Lemoore CA*</td><td>19.1%</td><td style="color:#2D5C42;font-weight:600">108</td><td>19.7%</td><td style="color:#2D5C42;font-weight:600">111</td><td>19.4%</td><td style="color:#2D5C42;font-weight:600">109</td></tr>
+          <tr><td>Tyler TX</td><td>16.0%</td><td class="mpi-mid">90</td><td>16.4%</td><td class="mpi-mid">92</td><td>16.4%</td><td class="mpi-mid">92</td></tr>
+          <tr><td>Southgate MI</td><td>14.7%</td><td class="mpi-low">83</td><td>14.8%</td><td class="mpi-low">83</td><td>14.7%</td><td class="mpi-low">82</td></tr>
         </tbody>
       </table>
     </div>
-    <p style="font-size:11px;color:#6A6A6A;margin-bottom:24px">* Lemoore civilian-only data — on-base NAS Lemoore military consumers not captured in survey methodology. Actual Chipotle demand likely higher.</p>
+    <p style="font-size:11px;color:var(--charcoal-light);margin-bottom:20px">* Lemoore civilian-only data. Actual Chipotle demand is higher — NAS Lemoore's 12,000+ military personnel are not captured in consumer survey methodology.</p>
 
     <div class="insight-row">
       <div class="insight-card">
-        <h4>Tenere recommendation</h4>
-        <p><strong>Durham NC</strong> is the preferred deal. Absolute NNN lease, the strongest demographic profile for Chipotle in the shortlist (MPI 128 at 1-mile), the highest trade area growth rate (+1.27%/yr at 5 miles), and validated digital ordering demand (Home delivery MPI 136). Target 5.00% cap ($3,700,000) in LOI. Broker Britt Raymond indicated developer would accept 5.00%. A competing LOI at 5.05% with conditions exists — move promptly.</p>
+        <h4>About this shortlist</h4>
+        <p>These five properties were selected from a review of approximately 80 active Chipotle listings. Selection criteria included fee-simple building ownership (no ground leases), geographic fit, cap rate range, lease structure quality, demographic alignment with Chipotle's core consumer profile, and proximity to defensible demand anchors. Each site passed an initial screen; what follows is a deeper look at the factors that differentiate them.</p>
       </div>
       <div class="insight-card">
-        <h4>Depreciation note (CA resident, 54.1% rate)</h4>
-        <p>All five are fee-simple buildings qualifying for cost segregation. CA taxes all passive income regardless of property state — <strong>depreciation is the sole differentiating variable</strong> across markets for Preet's tax position. Year 1 accelerated deductions on a $3.7M purchase with 60% cost segregation reclassification: approximately <strong>$610K–$740K</strong>. Verify Tyler OZ benefits separately with CPA — 180-day window applies to eligible gains.</p>
+        <h4>Depreciation context</h4>
+        <p>All five are fee-simple buildings qualifying for cost segregation and accelerated depreciation. California taxes passive income regardless of where the property is located — depreciation is the primary tax efficiency variable across all five sites. Year 1 accelerated deductions on a $3.7M purchase with 60% cost segregation reclassification are estimated at approximately <strong>$610K–$740K</strong>. Verify Tyler OZ eligibility separately with your CPA against specific gain timing and amount.</p>
       </div>
     </div>
   </div>
@@ -917,8 +682,7 @@
 
 <footer class="site-footer">
   Tenere Real Estate Advisors · Ian Furar, CCIM · CA DRE #02051422 · tenerecre.com<br>
-  Demographic data: Esri 2026/2031 forecasts. Restaurant MPI data: MRI-Simmons consumer survey via Esri. All information deemed reliable but not guaranteed. Not a solicitation to buy or sell securities.
-  Investor should conduct independent due diligence and consult qualified tax counsel regarding depreciation, cost segregation, and Opportunity Zone benefits.
+  Demographic data: Esri 2026/2031 forecasts. Restaurant MPI: MRI-Simmons consumer survey via Esri. Lease terms per offering memoranda — verify all details during due diligence. All information deemed reliable but not guaranteed. Not a solicitation.
 </footer>
 
 <script>
@@ -929,6 +693,5 @@ function showPanel(id, btn) {
   btn.classList.add('active');
 }
 </script>
-
 </body>
 </html>
