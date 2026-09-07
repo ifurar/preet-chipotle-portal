@@ -70,10 +70,22 @@ DISAMBIGUATION_EXCLUDE = {
     "Valencia": re.compile(r"\b(venezuela|alicante|carabobo|philippines)\b", re.IGNORECASE),
     "Chester": re.compile(
         r"\b(massachusetts|pennsylvania|new jersey|south carolina|west virginia|virginia"
-        r"|illinois|vermont|connecticut|usa|united states)\b",
+        r"|illinois|vermont|connecticut|usa|united states|chester-le-street)\b",
         re.IGNORECASE,
     ),
 }
+
+# Titles containing one of these are a strong signal the photo is actually the kind of
+# shot we want (skyline/old town/landmark), as opposed to an incidental street corner,
+# construction update, or building photo that happens to be huge and technically in the
+# right city. Preferred over raw resolution so a giant but mundane scan doesn't win by
+# default -- pixel count is only used to break ties within the same tier.
+GOOD_SUBJECT_PATTERN = re.compile(
+    r"\b(skyline|old\s?town|cityscape|panorama|aerial|landmark|cathedral|castle|citadel"
+    r"|fortress|palace|tower|bridge|square|harbou?r|waterfront|downtown|skyscraper"
+    r"|old\s?city|historic\s?(centre|center))\b",
+    re.IGNORECASE,
+)
 
 # Search terms tried for each destination (city name is prepended automatically). All
 # suffixes are queried and pooled before picking the best match, rather than stopping at
@@ -86,7 +98,10 @@ BAD_TITLE_PATTERNS = re.compile(
     r"|luge|toboggan|go-?kart|karting|roller\s?coaster|theme\s?park|amusement\s?park"
     r"|water\s?park|zip\s?line|model\s?kit|die-?cast|nissan|toyota|honda"
     r"|airport|runway|terminal|airlines?|flight|aircraft|airliner|airbus|boeing"
-    r"|atr\d|boarding\s?pass)\b",
+    r"|atr\d|boarding\s?pass"
+    r"|glass\s?plate|daguerreotype|stereograph"
+    r"|construction|building\s?site|under\s?construction|gradnj|renovation\s?work"
+    r"|equirectangular|360.?(degree|panorama)|spherical\s?panorama|virtual\s?tour)\b",
     re.IGNORECASE,
 )
 
@@ -214,8 +229,10 @@ def pick_best(pages, city, coords):
             "height": height,
             "mime": mime,
             "extmetadata": info.get("extmetadata", {}),
+            "good_subject": bool(GOOD_SUBJECT_PATTERN.search(title)),
         }
-        if best is None or (candidate["width"] * candidate["height"]) > (best["width"] * best["height"]):
+        candidate_key = (candidate["good_subject"], candidate["width"] * candidate["height"])
+        if best is None or candidate_key > (best["good_subject"], best["width"] * best["height"]):
             best = candidate
     return best
 
