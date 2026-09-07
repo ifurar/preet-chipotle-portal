@@ -101,7 +101,8 @@ BAD_TITLE_PATTERNS = re.compile(
     r"|atr\d|boarding\s?pass"
     r"|glass\s?plate|daguerreotype|stereograph"
     r"|construction|building\s?site|under\s?construction|gradnj|renovation\s?work"
-    r"|equirectangular|360.?(degree|panorama)|spherical\s?panorama|virtual\s?tour)\b",
+    r"|equirectangular|\b360\b|spherical\s?panorama|virtual\s?tour"
+    r"|neighbo(u)?rhood|residential\s?(area|district|street))\b",
     re.IGNORECASE,
 )
 
