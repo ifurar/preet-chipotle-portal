@@ -1,49 +1,49 @@
 File: prague.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Prague_skyline_at_dawn.jpg
-Author: Petar Milošević
+Commons page: https://commons.wikimedia.org/wiki/File:North_view_of_Charles_Bridge_from_M%C3%A1nes%C5%AFv_most,_Prague_20160808_1.jpg
+Author: DXR
 License: CC BY-SA 4.0
 
 File: valencia.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Castillo_de_Santa_B%C3%A1rbara,_Alicante,_Espa%C3%B1a,_2014-07-04,_DD_61.JPG
-Author: Diego Delso
-License: CC BY-SA 3.0
-
-File: ljubljana.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Skyline_von_Laibach,_Neboti%C4%8Dnik_Hochhaus,_Ljubljana,_Slowenien.JPG
-Author: Silberbeeren
-License: CC BY-SA 3.0
-
-File: porto.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Porto_Alegre_-_Brazil_Landscape-Night.jpg
-Author: Felipe Valduga from Porto Alegre, Brazil
+Commons page: https://commons.wikimedia.org/wiki/File:Valencia_Old_Town_Cityscape_(48991919677).jpg
+Author: Derek Rankine from Glasgow, Scotland
 License: CC BY 2.0
 
-File: budapest.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Budapest_skyline_from_Gell%C3%A9rt_Hill_(12).jpg
-Author: Elekes Andor
-License: CC BY 4.0
-
-File: tbilisi.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Cityscapes_of_Tbilisi_-_TbilisiCityscapes8126.jpg
-Author: lumoplank
-License: CC0
-
-File: kuala_lumpur.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Skyline_of_Mont_Kiara,_Kuala_Lumpur.jpg
-Author: Azreey
+File: ljubljana.jpg
+Commons page: https://commons.wikimedia.org/wiki/File:%C5%BDelezni%C5%A1ka_postaja_Ljubljana_med_potekom_gradnje_nove_postaje_(julij_2025).jpg
+Author: Petar Milošević
 License: CC BY-SA 4.0
 
-File: chiang_mai.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Thehillsrehabchiangmai.png
-Author: Themaki2000
-License: CC0
-
-File: chester.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Skyline_Trail,_Chester_MA.jpg
-Author: John Phelan
+File: porto.jpg
+Commons page: https://commons.wikimedia.org/wiki/File:View_of_Porto_old_town_from_Cais_de_Gaia_with_Porto_Cathedral,_20250605_1623_9881.jpg
+Author: Jakub Hałun
 License: CC BY 4.0
 
+File: budapest.jpg
+Commons page: https://commons.wikimedia.org/wiki/File:Budapest_cityscape_glass_plate_02.jpg
+Author: Unknown authorUnknown author
+License: Public domain
+
+File: tbilisi.jpg
+Commons page: https://commons.wikimedia.org/wiki/File:Tbilisi_State_University_(2022)_07.jpg
+Author: Jaba1977
+License: CC BY-SA 4.0
+
+File: kuala_lumpur.jpg
+Commons page: https://commons.wikimedia.org/wiki/File:The_Twins_SE_Asia_2019_(49171985716).jpg
+Author: James Kerwin from Tbilisi
+License: CC BY 2.0
+
+File: chiang_mai.jpg
+Commons page: https://commons.wikimedia.org/wiki/File:Chiang_Mai_Panorama.jpg
+Author: Jan Beck
+License: CC BY 2.0
+
+File: chester.jpg
+Commons page: https://commons.wikimedia.org/wiki/File:Aerial_view_of_Chester_Burn_Railway_Viaduct,_Chester-le-Street.jpg
+Author: Stuart.renneberg
+License: CC BY-SA 4.0
+
 File: laguna_beach.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:North_Laguna_Beach_Photo_Don_Ramey_Logan.jpg
-Author: Don Ramey Logan
-License: CC BY-SA 3.0
+Commons page: https://commons.wikimedia.org/wiki/File:Aerial_view_of_California_Coast,_looking_east_around_Laguna_Beach.jpg
+Author: Joe Mabel
+License: CC BY-SA 4.0
