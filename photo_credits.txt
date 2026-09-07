@@ -1,12 +1,12 @@
 File: prague.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Prague_Skyline.jpg
-Author: William Chizek
+Commons page: https://commons.wikimedia.org/wiki/File:Prague_skyline_at_dawn.jpg
+Author: Petar Milošević
 License: CC BY-SA 4.0
 
 File: valencia.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Skyline_Val%C3%A8ncia.jpg
-Author: Francesc Fort
-License: CC BY-SA 4.0
+Commons page: https://commons.wikimedia.org/wiki/File:Castillo_de_Santa_B%C3%A1rbara,_Alicante,_Espa%C3%B1a,_2014-07-04,_DD_61.JPG
+Author: Diego Delso
+License: CC BY-SA 3.0
 
 File: ljubljana.jpg
 Commons page: https://commons.wikimedia.org/wiki/File:Skyline_von_Laibach,_Neboti%C4%8Dnik_Hochhaus,_Ljubljana,_Slowenien.JPG
@@ -14,36 +14,36 @@ Author: Silberbeeren
 License: CC BY-SA 3.0
 
 File: porto.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Darwin_(AU),_Stokes_Hill_Wharf_--_2019_--_4362.jpg
-Author: Dietmar Rabich
-License: CC BY-SA 4.0
+Commons page: https://commons.wikimedia.org/wiki/File:Porto_Alegre_-_Brazil_Landscape-Night.jpg
+Author: Felipe Valduga from Porto Alegre, Brazil
+License: CC BY 2.0
 
 File: budapest.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Budapest_skyline_from_Gell%C3%A9rt_Hill_(1).jpg
+Commons page: https://commons.wikimedia.org/wiki/File:Budapest_skyline_from_Gell%C3%A9rt_Hill_(11).jpg
 Author: Elekes Andor
 License: CC BY 4.0
 
 File: tbilisi.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:The_Twins_SE_Asia_2019_(49171985716).jpg
-Author: James Kerwin from Tbilisi
-License: CC BY 2.0
+Commons page: https://commons.wikimedia.org/wiki/File:Cityscapes_of_Tbilisi_-_TbilisiCityscapes8126.jpg
+Author: lumoplank
+License: CC0
 
 File: kuala_lumpur.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Skyline_Luge_Kuala_Lumpur_(231229)_01.jpg
-Author: *angys*
+Commons page: https://commons.wikimedia.org/wiki/File:Skyline_of_Mont_Kiara,_Kuala_Lumpur.jpg
+Author: Azreey
 License: CC BY-SA 4.0
 
 File: chiang_mai.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Doi_Suthep_Skyline.jpg
-Author: Douglas Perkins
-License: CC BY 4.0
+Commons page: https://commons.wikimedia.org/wiki/File:Chiang_Mai_Airport_runway_aerial_view.JPG
+Author: Adbar
+License: CC BY-SA 3.0
 
 File: chester.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Nissan_Skyline_GTS25t_Type_M_(R33,_1997)_(52573697959).jpg
-Author: Charles from Port Chester, New York
-License: CC BY 2.0
+Commons page: https://commons.wikimedia.org/wiki/File:Skyline_Trail,_Chester_MA.jpg
+Author: John Phelan
+License: CC BY 4.0
 
 File: laguna_beach.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:View_of_Los_Angeles_Skyline_from_Commerce,_California_(14517769445).jpg
-Author: Ken Lund from Reno, Nevada, USA
-License: CC BY-SA 2.0
+Commons page: https://commons.wikimedia.org/wiki/File:North_Laguna_Beach_Photo_Don_Ramey_Logan.jpg
+Author: Don Ramey Logan
+License: CC BY-SA 3.0
