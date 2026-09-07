@@ -16,7 +16,7 @@ import os
 import re
 import sys
 import time
-from urllib.parse import quote
+from math import atan2, cos, radians, sin, sqrt
 
 import requests
 
@@ -44,15 +44,41 @@ DESTINATIONS = [
     "Laguna Beach, California",
 ]
 
+# Known city-center coordinates, used to reject same-name-different-place mismatches
+# (e.g. Porto Alegre/Brazil matching a "Porto" search, or Chester/Massachusetts matching
+# "Chester") for candidates that carry EXIF/Commons geodata.
+DESTINATION_COORDS = {
+    "Prague, Czechia": (50.0755, 14.4378),
+    "Valencia, Spain": (39.4699, -0.3763),
+    "Ljubljana, Slovenia": (46.0569, 14.5058),
+    "Porto, Portugal": (41.1579, -8.6291),
+    "Budapest, Hungary": (47.4979, 19.0402),
+    "Tbilisi, Georgia": (41.7151, 44.8271),
+    "Kuala Lumpur, Malaysia": (3.1390, 101.6869),
+    "Chiang Mai, Thailand": (18.7061, 98.9817),
+    "Chester, United Kingdom": (53.1934, -2.8931),
+    "Laguna Beach, California": (33.5427, -117.7854),
+}
+MAX_DISTANCE_KM = 60
+
 # Search terms tried in order for each destination (city name is prepended automatically).
 QUERY_SUFFIXES = ["skyline", "old town", "cityscape", "aerial view", "panorama", "landmark"]
 
 BAD_TITLE_PATTERNS = re.compile(
     r"\b(map|logo|flag|coat of arms|icon|diagram|chart|graph|stamp|banknote|coin|screenshot"
     r"|luge|toboggan|go-?kart|karting|roller\s?coaster|theme\s?park|amusement\s?park"
-    r"|water\s?park|zip\s?line|model\s?kit|die-?cast|nissan|toyota|honda)\b",
+    r"|water\s?park|zip\s?line|model\s?kit|die-?cast|nissan|toyota|honda"
+    r"|airport|runway|terminal)\b",
     re.IGNORECASE,
 )
+
+
+def haversine_km(lat1, lon1, lat2, lon2):
+    r = 6371.0
+    dlat = radians(lat2 - lat1)
+    dlon = radians(lon2 - lon1)
+    a = sin(dlat / 2) ** 2 + cos(radians(lat1)) * cos(radians(lat2)) * sin(dlon / 2) ** 2
+    return 2 * r * atan2(sqrt(a), sqrt(1 - a))
 
 
 def slugify(destination: str) -> str:
@@ -108,16 +134,17 @@ def search_candidates(session, city, suffix):
             "gsrsearch": query,
             "gsrnamespace": 6,
             "gsrlimit": 15,
-            "prop": "imageinfo|categories",
+            "prop": "imageinfo|categories|coordinates",
             "iiprop": "url|size|mime|extmetadata",
             "cllimit": 50,
+            "colimit": 1,
         },
     )
     pages = data.get("query", {}).get("pages", {})
     return list(pages.values())
 
 
-def pick_best(pages, city):
+def pick_best(pages, city, coords):
     pattern = city_regex(city)
     best = None
     for page in pages:
@@ -126,6 +153,12 @@ def pick_best(pages, city):
             continue
         if not is_relevant(page, pattern):
             continue
+        geo = page.get("coordinates")
+        if geo and coords:
+            lat, lon = geo[0].get("lat"), geo[0].get("lon")
+            if lat is not None and lon is not None:
+                if haversine_km(lat, lon, coords[0], coords[1]) > MAX_DISTANCE_KM:
+                    continue
         infos = page.get("imageinfo")
         if not infos:
             continue
@@ -158,9 +191,10 @@ def pick_best(pages, city):
 
 def find_photo(session, destination):
     city = destination.split(",")[0].strip()
+    coords = DESTINATION_COORDS.get(destination)
     for suffix in QUERY_SUFFIXES:
         pages = search_candidates(session, city, suffix)
-        best = pick_best(pages, city)
+        best = pick_best(pages, city, coords)
         if best:
             return best
     return None
