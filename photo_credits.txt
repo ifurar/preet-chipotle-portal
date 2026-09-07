@@ -24,9 +24,9 @@ Author: Mgimelfarb
 License: CC BY-SA 4.0
 
 File: tbilisi.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Panorama_360_of_Orkhevi_neighbourhood,_Tbilisi._05.jpg
-Author: David Osipov
-License: CC BY 4.0
+Commons page: https://commons.wikimedia.org/wiki/File:BW11_-_Cityscape_of_Old_Tbilisi.jpg
+Author: Misa.stefanovic.07
+License: CC BY-SA 4.0
 
 File: kuala_lumpur.jpg
 Commons page: https://commons.wikimedia.org/wiki/File:Kuala_Lumpur_panorama_at_night_from_Roofino_Sky_Dining.jpg
