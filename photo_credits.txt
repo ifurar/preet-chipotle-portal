@@ -34,9 +34,9 @@ Author: Azreey
 License: CC BY-SA 4.0
 
 File: chiang_mai.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Chiang_Mai_Airport_runway_aerial_view.JPG
-Author: Adbar
-License: CC BY-SA 3.0
+Commons page: https://commons.wikimedia.org/wiki/File:LAO_AIRLINES_FLIGHT_QV615_CHIANG_MAI_THAILAND_TO_LUANG_PRABANG_LAOS_ATR72-500_RDPL_34176_FEB_2012_(6833123424).jpg
+Author: calflier001
+License: CC BY-SA 2.0
 
 File: chester.jpg
 Commons page: https://commons.wikimedia.org/wiki/File:Skyline_Trail,_Chester_MA.jpg
