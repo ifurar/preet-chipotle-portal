@@ -61,7 +61,24 @@ DESTINATION_COORDS = {
 }
 MAX_DISTANCE_KM = 60
 
-# Search terms tried in order for each destination (city name is prepended automatically).
+# Cities in our list whose name collides with a different, better-known place elsewhere
+# (Porto Alegre/Brazil, Chester/Massachusetts, Valencia/Venezuela, etc). Most Commons files
+# lack machine-readable geodata, so the coordinate check alone can't be relied on to catch
+# these; explicitly reject candidates whose title/categories mention the conflicting place.
+DISAMBIGUATION_EXCLUDE = {
+    "Porto": re.compile(r"\b(alegre|brazil|brasil)\b", re.IGNORECASE),
+    "Valencia": re.compile(r"\b(venezuela|alicante|carabobo|philippines)\b", re.IGNORECASE),
+    "Chester": re.compile(
+        r"\b(massachusetts|pennsylvania|new jersey|south carolina|west virginia|virginia"
+        r"|illinois|vermont|connecticut|usa|united states)\b",
+        re.IGNORECASE,
+    ),
+}
+
+# Search terms tried for each destination (city name is prepended automatically). All
+# suffixes are queried and pooled before picking the best match, rather than stopping at
+# the first suffix that returns anything -- otherwise a single wrong-place hit under
+# "skyline" can win by default even though a later suffix would have found the real city.
 QUERY_SUFFIXES = ["skyline", "old town", "cityscape", "aerial view", "panorama", "landmark"]
 
 BAD_TITLE_PATTERNS = re.compile(
@@ -147,12 +164,22 @@ def search_candidates(session, city, suffix):
 
 def pick_best(pages, city, coords):
     pattern = city_regex(city)
+    exclude = DISAMBIGUATION_EXCLUDE.get(city)
     best = None
+    seen_titles = set()
     for page in pages:
         title = page.get("title", "")
+        if title in seen_titles:
+            continue
+        seen_titles.add(title)
         if BAD_TITLE_PATTERNS.search(title):
             continue
         if not is_relevant(page, pattern):
+            continue
+        if exclude and (
+            exclude.search(title) or any(exclude.search(c.get("title", "")) for c in page.get("categories", []) or [])
+        ):
+            print(f"    rejecting {title!r}: matches disambiguation exclusion", file=sys.stderr)
             continue
         geo = page.get("coordinates")
         print(f"    candidate {title!r} coordinates={geo!r}", file=sys.stderr)
@@ -196,12 +223,10 @@ def pick_best(pages, city, coords):
 def find_photo(session, destination):
     city = destination.split(",")[0].strip()
     coords = DESTINATION_COORDS.get(destination)
+    all_pages = []
     for suffix in QUERY_SUFFIXES:
-        pages = search_candidates(session, city, suffix)
-        best = pick_best(pages, city, coords)
-        if best:
-            return best
-    return None
+        all_pages.extend(search_candidates(session, city, suffix))
+    return pick_best(all_pages, city, coords)
 
 
 def extract_meta(value_dict, key, default="Unknown"):
