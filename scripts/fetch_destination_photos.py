@@ -48,7 +48,9 @@ DESTINATIONS = [
 QUERY_SUFFIXES = ["skyline", "old town", "cityscape", "aerial view", "panorama", "landmark"]
 
 BAD_TITLE_PATTERNS = re.compile(
-    r"\b(map|logo|flag|coat of arms|icon|diagram|chart|graph|stamp|banknote|coin|screenshot)\b",
+    r"\b(map|logo|flag|coat of arms|icon|diagram|chart|graph|stamp|banknote|coin|screenshot"
+    r"|luge|toboggan|go-?kart|karting|roller\s?coaster|theme\s?park|amusement\s?park"
+    r"|water\s?park|zip\s?line|model\s?kit|die-?cast|nissan|toyota|honda)\b",
     re.IGNORECASE,
 )
 
@@ -57,6 +59,28 @@ def slugify(destination: str) -> str:
     city = destination.split(",")[0].strip().lower()
     city = re.sub(r"[^a-z0-9]+", "_", city).strip("_")
     return city
+
+
+def city_regex(city: str) -> re.Pattern:
+    """Word-boundary regex requiring the full city name (spaces or underscores) to appear."""
+    escaped = re.escape(city).replace(r"\ ", r"[ _]")
+    return re.compile(rf"\b{escaped}\b", re.IGNORECASE)
+
+
+def is_relevant(page, pattern: re.Pattern) -> bool:
+    """A candidate is relevant only if the city name shows up in its title or its categories.
+
+    Commons full-text search also matches uploader usernames, upload locations, and unrelated
+    descriptions, which produces confident-looking but wrong hits (e.g. a car called "Skyline"
+    photographed in Germany matching a "Chester skyline" search via unrelated metadata). Anchoring
+    relevance to the title or the file's own categories filters those out.
+    """
+    if pattern.search(page.get("title", "")):
+        return True
+    for cat in page.get("categories", []) or []:
+        if pattern.search(cat.get("title", "")):
+            return True
+    return False
 
 
 def api_get(session, params):
@@ -74,8 +98,8 @@ def api_get(session, params):
 
 
 def search_candidates(session, city, suffix):
-    """Return imageinfo dicts for files matching `city suffix` search."""
-    query = f"{city} {suffix} filetype:bitmap"
+    """Return imageinfo dicts for files matching `"city" suffix` search."""
+    query = f'"{city}" {suffix} filetype:bitmap'
     data = api_get(
         session,
         {
@@ -84,8 +108,9 @@ def search_candidates(session, city, suffix):
             "gsrsearch": query,
             "gsrnamespace": 6,
             "gsrlimit": 15,
-            "prop": "imageinfo",
+            "prop": "imageinfo|categories",
             "iiprop": "url|size|mime|extmetadata",
+            "cllimit": 50,
         },
     )
     pages = data.get("query", {}).get("pages", {})
@@ -93,10 +118,13 @@ def search_candidates(session, city, suffix):
 
 
 def pick_best(pages, city):
+    pattern = city_regex(city)
     best = None
     for page in pages:
         title = page.get("title", "")
         if BAD_TITLE_PATTERNS.search(title):
+            continue
+        if not is_relevant(page, pattern):
             continue
         infos = page.get("imageinfo")
         if not infos:
