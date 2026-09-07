@@ -68,7 +68,8 @@ BAD_TITLE_PATTERNS = re.compile(
     r"\b(map|logo|flag|coat of arms|icon|diagram|chart|graph|stamp|banknote|coin|screenshot"
     r"|luge|toboggan|go-?kart|karting|roller\s?coaster|theme\s?park|amusement\s?park"
     r"|water\s?park|zip\s?line|model\s?kit|die-?cast|nissan|toyota|honda"
-    r"|airport|runway|terminal)\b",
+    r"|airport|runway|terminal|airlines?|flight|aircraft|airliner|airbus|boeing"
+    r"|atr\d|boarding\s?pass)\b",
     re.IGNORECASE,
 )
 
@@ -154,10 +155,13 @@ def pick_best(pages, city, coords):
         if not is_relevant(page, pattern):
             continue
         geo = page.get("coordinates")
+        print(f"    candidate {title!r} coordinates={geo!r}", file=sys.stderr)
         if geo and coords:
             lat, lon = geo[0].get("lat"), geo[0].get("lon")
             if lat is not None and lon is not None:
-                if haversine_km(lat, lon, coords[0], coords[1]) > MAX_DISTANCE_KM:
+                dist = haversine_km(lat, lon, coords[0], coords[1])
+                print(f"      -> distance from destination center: {dist:.1f} km", file=sys.stderr)
+                if dist > MAX_DISTANCE_KM:
                     continue
         infos = page.get("imageinfo")
         if not infos:
