@@ -34,8 +34,8 @@ Author: Marcin Konsek
 License: CC BY-SA 4.0
 
 File: chiang_mai.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Chiang_Mai_-_Tha_Phae_Gate_%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%95%E0%B8%B9%E0%B8%97%E0%B9%88%E0%B8%B2%E0%B9%81%E0%B8%9E_(2026)_-_IMG_01.jpg
-Author: Chainwit.
+Commons page: https://commons.wikimedia.org/wiki/File:Wat_Chedi_Luang,_Buddhist_temple,_Chiang_Mai,_Thailand.jpg
+Author: Vyacheslav Argenberg
 License: CC BY 4.0
 
 File: chester.jpg
