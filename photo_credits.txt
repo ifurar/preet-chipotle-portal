@@ -1,18 +1,18 @@
 Prague, Czechia
   [landmark] prague-landmark.jpg
-  Commons page: https://commons.wikimedia.org/wiki/File:Czech-2013-Prague-View_from_Charles_Bridge_of_Prague_Castle.jpg
-  Author: Godot13
-  License: CC BY-SA 4.0
+  Commons page: https://commons.wikimedia.org/wiki/File:Prague_Castle_at_Night_viewed_from_Charles_Bridge.jpg
+  Author: Lucas Garron
+  License: CC0
 
   [lifestyle] prague-lifestyle.jpg
-  Commons page: https://commons.wikimedia.org/wiki/File:Easter_markets_at_Wenceslas_Square,_2019_(03).jpg
-  Author: Bahnfrend
+  Commons page: https://commons.wikimedia.org/wiki/File:Old_Town_Square_Prague.jpg
+  Author: Nurtenge
   License: CC BY-SA 4.0
 
   [scenic] prague-scenic.jpg
-  Commons page: https://commons.wikimedia.org/wiki/File:Zizkov_Tower_Sunset_(89455453).jpeg
-  Author: Lukas F
-  License: CC BY 3.0
+  Commons page: https://commons.wikimedia.org/wiki/File:St._Vitus_Prague_at_Sunset_(34800855830).jpg
+  Author: Nan Palmero from San Antonio, TX, USA
+  License: CC BY 2.0
 
 Valencia, Spain
   [landmark] valencia-landmark.jpg
@@ -32,9 +32,9 @@ Valencia, Spain
 
 Ljubljana, Slovenia
   [landmark] ljubljana-landmark.jpg
-  Commons page: https://commons.wikimedia.org/wiki/File:Dragon_Bridge,_Ljubljana,_20240502_1822_7810.jpg
-  Author: Jakub Hałun
-  License: CC BY 4.0
+  Commons page: https://commons.wikimedia.org/wiki/File:Zu_Views_of_Ljubljana_Castle_01.JPG
+  Author: Arths-at
+  License: CC BY-SA 4.0
 
   [lifestyle] ljubljana-lifestyle.jpg
   Commons page: https://commons.wikimedia.org/wiki/File:Ljubljana_Central_Market_(54039392141).jpg
@@ -69,9 +69,9 @@ Budapest, Hungary
   License: CC0
 
   [scenic] budapest-scenic.jpg
-  Commons page: https://commons.wikimedia.org/wiki/File:Andr%C3%A1ssy_Palace_(1880)._Ceiling._-_6_Bem_quay,_Budapest.JPG
-  Author: Globetrotter19
-  License: CC BY-SA 3.0
+  Commons page: https://commons.wikimedia.org/wiki/File:Sunset_viewing_in_Mauritania.jpg
+  Author: Andrewszabo
+  License: CC BY-SA 4.0
 
 Tbilisi, Georgia
   [landmark] tbilisi-landmark.jpg
@@ -80,9 +80,9 @@ Tbilisi, Georgia
   License: Public domain
 
   [lifestyle] tbilisi-lifestyle.jpg
-  Commons page: https://commons.wikimedia.org/wiki/File:Tbilisi,_Old_town,_Georgia.jpg
-  Author: Vyacheslav Argenberg
-  License: CC BY 4.0
+  Commons page: https://commons.wikimedia.org/wiki/File:Old_Town,_Tbilisi,_Georgia_(48808308233).jpg
+  Author: Andrew Milligan sumo
+  License: CC BY 2.0
 
   [scenic] tbilisi-scenic.jpg
   Commons page: https://commons.wikimedia.org/wiki/File:2025-04-27_Sunset_over_Tbilisi_seen_from_Chaisubani_street.jpg
@@ -91,9 +91,9 @@ Tbilisi, Georgia
 
 Kuala Lumpur, Malaysia
   [landmark] kuala_lumpur-landmark.jpg
-  Commons page: https://commons.wikimedia.org/wiki/File:2016_Kuala_Lumpur,_Petronas_Towers_(27).jpg
-  Author: Marcin Konsek
-  License: CC BY-SA 4.0
+  Commons page: https://commons.wikimedia.org/wiki/File:Batu_Caves_structure_located_at_Batu_Caves_in_Gombak_district,_north_of_Kuala_Lumpur.jpg
+  Author: Ninad Katyare
+  License: CC BY 3.0
 
   [lifestyle] kuala_lumpur-lifestyle.jpg
   Commons page: https://commons.wikimedia.org/wiki/File:Lebuh_Pasar_Besar_(Market_Street)_(between_Jalan_Tun_H_S_Lee_and_Medan_Pasar,_Jalan_Hang_Kasturi),_central_Kuala_Lumpur.jpg
@@ -118,9 +118,9 @@ Chiang Mai, Thailand
 
 Chester, United Kingdom
   [landmark] chester-landmark.jpg
-  Commons page: https://commons.wikimedia.org/wiki/File:Chester_Rows,_Bridge_Street_-_geograph.org.uk_-_4391172.jpg
-  Author: Jeff Buck
-  License: CC BY-SA 2.0
+  Commons page: https://commons.wikimedia.org/wiki/File:Chester_Roman_Amphitheatre_-_panorama_from_centre_01c.jpg
+  Author: Chris McKenna
+  License: CC BY-SA 3.0
 
   [lifestyle] chester-lifestyle.jpg
   Commons page: https://commons.wikimedia.org/wiki/File:Exchange_Square,_Chester_-_geograph.org.uk_-_7946591.jpg
@@ -128,9 +128,9 @@ Chester, United Kingdom
   License: CC BY-SA 2.0
 
   [scenic] chester-scenic.jpg
-  Commons page: https://commons.wikimedia.org/wiki/File:Suburban_Sunset,_Hoole,_Chester_-_geograph.org.uk_-_7417385.jpg
-  Author: Jeff Buck
-  License: CC BY-SA 2.0
+  Commons page: https://commons.wikimedia.org/wiki/File:Chester_waterfront_-_DPLA_-_33f20e394e5667f2205421fd02a1b128.jpg
+  Author: Unknown
+  License: Public domain
 
 Laguna Beach, California
   [landmark] laguna_beach-landmark.jpg
