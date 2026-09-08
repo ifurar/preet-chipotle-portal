@@ -136,10 +136,13 @@ LANDMARK_PATTERNS = {
 # Search terms for the "lifestyle" shot: an inviting everyday street/café/market scene.
 # Generic on purpose -- these are meant to surface whatever charming pedestrian scene each
 # city actually has on Commons, not force a specific spot.
-LIFESTYLE_SUFFIXES = ["old town street", "cafe terrace", "market square", "colorful houses street"]
+LIFESTYLE_SUFFIXES = [
+    "old town street", "cafe terrace", "market square", "colorful houses street",
+    "night market", "street food",
+]
 
 # Search terms for the "scenic" shot: natural beauty / golden-hour / water.
-SCENIC_SUFFIXES = ["sunset", "waterfront", "aerial view golden hour", "riverside park"]
+SCENIC_SUFFIXES = ["sunset", "waterfront", "aerial view golden hour", "riverside park", "dusk", "river view"]
 
 # Generic fallback terms for the "landmark" shot, queried alongside the named landmarks so
 # there's still a pool of candidates if a specific landmark search comes up empty.
@@ -259,19 +262,18 @@ def city_regex(city: str) -> re.Pattern:
 
 
 def is_relevant(page, pattern: re.Pattern) -> bool:
-    """A candidate is relevant only if the city name shows up in its title or its categories.
+    """A candidate is relevant only if the city name shows up in its title.
 
-    Commons full-text search also matches uploader usernames, upload locations, and unrelated
-    descriptions, which produces confident-looking but wrong hits (e.g. a car called "Skyline"
-    photographed in Germany matching a "Chester skyline" search via unrelated metadata). Anchoring
-    relevance to the title or the file's own categories filters those out.
+    Commons full-text search also matches uploader usernames, upload locations, event/club
+    categories, and unrelated descriptions, which produces confident-looking but wrong hits
+    (e.g. a car called "Skyline" photographed in Germany matching a "Chester skyline" search;
+    a Budapest astronomy club's Mauritania eclipse-trip photo matching a "Budapest" search via
+    its own category tag). Category matching used to be an alternate signal here, but it was
+    the exact vector for both of those false positives and was never needed to find a real
+    hit -- every verified-good photo in this pipeline had the city in its title anyway.
+    Anchoring strictly to the title is the safer bar.
     """
-    if pattern.search(page.get("title", "")):
-        return True
-    for cat in page.get("categories", []) or []:
-        if pattern.search(cat.get("title", "")):
-            return True
-    return False
+    return bool(pattern.search(page.get("title", "")))
 
 
 def api_get(session, params):
