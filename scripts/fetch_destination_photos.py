@@ -142,7 +142,7 @@ LANDMARK_PATTERNS = {
 # city actually has on Commons, not force a specific spot.
 LIFESTYLE_SUFFIXES = [
     "old town street", "cafe terrace", "market square", "colorful houses street",
-    "night market", "street food",
+    "night market", "street food", "village downtown", "boutique shops street",
 ]
 
 # Search terms for the "scenic" shot: natural beauty / golden-hour / water.
