@@ -1,49 +1,49 @@
 File: prague.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:North_view_of_Charles_Bridge_from_M%C3%A1nes%C5%AFv_most,_Prague_20160808_1.jpg
-Author: DXR
+Commons page: https://commons.wikimedia.org/wiki/File:Czech-2013-Prague-View_from_Charles_Bridge_of_Prague_Castle.jpg
+Author: Godot13
 License: CC BY-SA 4.0
 
 File: valencia.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Valencia_Old_Town_Cityscape_(48991919677).jpg
-Author: Derek Rankine from Glasgow, Scotland
-License: CC BY 2.0
-
-File: ljubljana.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:COVID-19_pandemic_in_Slovenia_(Ljubljana_downtown,_center).jpg
-Author: Petar Milošević
+Commons page: https://commons.wikimedia.org/wiki/File:Valencia_cathedral_2022_-_north_fa%C3%A7ade_dawn.jpg
+Author: Fernando Pascullo
 License: CC BY-SA 4.0
 
-File: porto.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:View_of_Porto_old_town_from_Cais_de_Gaia_with_Porto_Cathedral,_20250605_1623_9881.jpg
+File: ljubljana.jpg
+Commons page: https://commons.wikimedia.org/wiki/File:Dragon_Bridge,_Ljubljana,_20240502_1822_7810.jpg
 Author: Jakub Hałun
 License: CC BY 4.0
 
+File: porto.jpg
+Commons page: https://commons.wikimedia.org/wiki/File:Porto_Cathedral,_July_2023.jpg
+Author: Thomas Dahlstrøm Nielsen
+License: CC BY 4.0
+
 File: budapest.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Elisabeth_Bridge_panorama_2015.jpg
-Author: Юлия Можаровская
+Commons page: https://commons.wikimedia.org/wiki/File:Chain_Bridge,_Budapest_(_Ank_Kumar,_Infosys_Limited)_04.jpg
+Author: Ank Kumar
 License: CC BY-SA 4.0
 
 File: tbilisi.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:BW11_-_Cityscape_of_Old_Tbilisi.jpg
-Author: Misa.stefanovic.07
+Commons page: https://commons.wikimedia.org/wiki/File:Holy_Trinity_Cathedral_of_Tbilisi_07.jpg
+Author: Mostafameraji
 License: CC BY-SA 4.0
 
 File: kuala_lumpur.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Petronas_Twin_Towers._Aerial_view._2019-11-30_15-05-22.jpg
-Author: Shesmax
+Commons page: https://commons.wikimedia.org/wiki/File:2016_Kuala_Lumpur,_Petronas_Towers_(27).jpg
+Author: Marcin Konsek
 License: CC BY-SA 4.0
 
 File: chiang_mai.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Chiang_Mai_Panorama.jpg
-Author: Jan Beck
-License: CC BY 2.0
+Commons page: https://commons.wikimedia.org/wiki/File:Chiang_Mai_-_Tha_Phae_Gate_%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%95%E0%B8%B9%E0%B8%97%E0%B9%88%E0%B8%B2%E0%B9%81%E0%B8%9E_(2026)_-_IMG_01.jpg
+Author: Chainwit.
+License: CC BY 4.0
 
 File: chester.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Chester_Roman_Amphitheatre_-_panorama_from_centre_01a.jpg
-Author: Chris McKenna
+Commons page: https://commons.wikimedia.org/wiki/File:Chester_Cathedral_Choir,_Cheshire,_UK_-_Diliff.jpg
+Author: Diliff
 License: CC BY-SA 3.0
 
 File: laguna_beach.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:North_Laguna_Aerial_photo_by_Don_Ramey_Logan.jpg
-Author: Don Ramey Logan
-License: CC BY 4.0
+Commons page: https://commons.wikimedia.org/wiki/File:Heisler_Park_-_Laguna_Beach_-_California_-_01.jpg
+Author: NorbertNagel
+License: CC BY-SA 4.0
