@@ -96,9 +96,9 @@ Tbilisi, Georgia
 
 Kuala Lumpur, Malaysia
   [landmark] kuala_lumpur-landmark.jpg
-  Commons page: https://commons.wikimedia.org/wiki/File:Batu_Caves_structure_located_at_Batu_Caves_in_Gombak_district,_north_of_Kuala_Lumpur.jpg
-  Author: Ninad Katyare
-  License: CC BY 3.0
+  Commons page: https://commons.wikimedia.org/wiki/File:2016_Kuala_Lumpur,_Petronas_Towers_(27).jpg
+  Author: Marcin Konsek
+  License: CC BY-SA 4.0
 
   [lifestyle] kuala_lumpur-lifestyle.jpg
   Commons page: https://commons.wikimedia.org/wiki/File:Petaling_Street,_Kuala_Lumpur,_24_March_2019.jpg
