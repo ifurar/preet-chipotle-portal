@@ -123,7 +123,11 @@ NAMED_LANDMARKS = {
     "Porto": ["Dom Luis Bridge", "Livraria Lello", "Porto Cathedral", "Ribeira"],
     "Budapest": ["Hungarian Parliament", "Fisherman's Bastion", "Chain Bridge", "Buda Castle"],
     "Tbilisi": ["Narikala Fortress", "Bridge of Peace", "Holy Trinity Cathedral"],
-    "Kuala Lumpur": ["Petronas Towers", "KL Tower", "Batu Caves"],
+    # Batu Caves used to be listed here too, but its Commons photos keep being unflattering
+    # dark cave-interior shots whose titles never say "interior" (so no keyword filter can
+    # catch them) -- e.g. "Batu Caves structure located at Batu Caves in Gombak district..."
+    # is, despite the name, a photo of the cave's inside. Dropped rather than chased further.
+    "Kuala Lumpur": ["Petronas Towers", "KL Tower"],
     "Chiang Mai": ["Wat Chedi Luang", "Wat Phra Singh", "Tha Phae Gate", "Doi Suthep"],
     "Chester": ["Chester Cathedral", "Chester Rows", "Eastgate Clock", "Roman Amphitheatre"],
     "Laguna Beach": ["Main Beach", "Heisler Park"],
@@ -171,10 +175,6 @@ INTERIOR_PATTERN = re.compile(
 # title -- "Wat Chedi Luang Assembly Hall ... - Diliff" sounded like an exterior shot of
 # the temple grounds and turned out to be an interior photo of monks in prayer.
 PREFERRED_TITLE_SUBSTRINGS = {
-    # Batu Caves (also in NAMED_LANDMARKS) turned out to rank a dark cave-interior shot
-    # with statues and a burned-in camera timestamp -- technically passed every filter but
-    # is not remotely aspirational. Excluding cave-interior terms above should redirect
-    # this back toward Petronas Towers/KL Tower exterior shots.
     "Kuala Lumpur": [
         "Petronas Twin Towers, Kuala Lumpur, Malaysia",
         "Menara Kembar Petronas, Bandaraya Kuala Lumpur",
