@@ -14,8 +14,8 @@ Author: Jakub Hałun
 License: CC BY 4.0
 
 File: porto.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Porto_Cathedral,_July_2023.jpg
-Author: Thomas Dahlstrøm Nielsen
+Commons page: https://commons.wikimedia.org/wiki/File:View_of_Porto_Cathedral_from_Cl%C3%A9rigos_Tower,_20250605_1724_9965.jpg
+Author: Jakub Hałun
 License: CC BY 4.0
 
 File: budapest.jpg
@@ -34,14 +34,14 @@ Author: Marcin Konsek
 License: CC BY-SA 4.0
 
 File: chiang_mai.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Chiang_Mai_-_Tha_Phae_Gate_%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%95%E0%B8%B9%E0%B8%97%E0%B9%88%E0%B8%B2%E0%B9%81%E0%B8%9E_(2026)_-_IMG_01.jpg
-Author: Chainwit.
-License: CC BY 4.0
-
-File: chester.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Chester_Cathedral_Choir,_Cheshire,_UK_-_Diliff.jpg
+Commons page: https://commons.wikimedia.org/wiki/File:Wat_Chedi_Luang_Assembly_Hall,_Chiang_Mai,_Thailand_-_Diliff.jpg
 Author: Diliff
 License: CC BY-SA 3.0
+
+File: chester.jpg
+Commons page: https://commons.wikimedia.org/wiki/File:Chester_Rows,_Bridge_Street_-_geograph.org.uk_-_4391172.jpg
+Author: Jeff Buck
+License: CC BY-SA 2.0
 
 File: laguna_beach.jpg
 Commons page: https://commons.wikimedia.org/wiki/File:Heisler_Park_-_Laguna_Beach_-_California_-_01.jpg
