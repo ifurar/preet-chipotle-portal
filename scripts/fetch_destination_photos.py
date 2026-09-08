@@ -153,7 +153,8 @@ INTERIOR_PATTERN = re.compile(
     r"\b(interior|innenaufnahme|indoor|inside|nave|choir|cloister|crypt|sacristy"
     r"|lady\s?chapel|rood\s?screen|chancel|querhaus|organ|orgel|stained\s?glass\s?close"
     r"|assembly\s?hall|ordination\s?hall|prayer\s?hall|shrine\s?hall|wihan|viharn|ubosot"
-    r"|monks?\s?(praying|chanting|ceremony)|reading\s?room|library\s?hall)\b",
+    r"|monks?\s?(praying|chanting|ceremony)|reading\s?room|library\s?hall"
+    r"|ceiling|fresco|frescoed|painted\s?ceiling|chandelier\s?close)\b",
     re.IGNORECASE,
 )
 
@@ -176,7 +177,12 @@ PREFERRED_TITLE_SUBSTRINGS = {
         "Wat Chedi Luang, Stupa, Chiang Mai",
         "Wat Chedi Luang, Buddhist temple, Chiang Mai",
     ],
-    "Chester": ["Chester Roman Amphitheatre - panorama from centre 01a"],
+    # Broadened to match ANY Roman Amphitheatre exterior upload rather than one specific
+    # file -- Commons full-text search result ordering isn't fully stable across runs, so
+    # pinning a single exact title meant it sometimes just wasn't in that run's top-15
+    # results per suffix and silently fell back to a worse pick ("Chester Rows, Bridge
+    # Street", dominated by Hugo Boss/Jigsaw shop windows).
+    "Chester": ["Roman Amphitheatre"],
 }
 
 MONOCHROME_PATTERN = re.compile(
@@ -292,7 +298,7 @@ def search_candidates(session, city, suffix):
             "generator": "search",
             "gsrsearch": query,
             "gsrnamespace": 6,
-            "gsrlimit": 15,
+            "gsrlimit": 30,
             "prop": "imageinfo|categories|coordinates",
             "iiprop": "url|size|mime|extmetadata",
             "cllimit": 50,
@@ -311,21 +317,31 @@ def rank_candidates(pages, city, coords, shot_type, exclude_urls):
     preferred = PREFERRED_TITLE_SUBSTRINGS.get(city, []) if shot_type == "landmark" else []
     candidates = []
     seen_titles = set()
+    rejects = {
+        "bad_title": 0, "interior": 0, "not_relevant": 0, "disambiguation": 0,
+        "too_far": 0, "already_used": 0, "wrong_mime": 0, "no_size": 0,
+        "too_small": 0, "bad_aspect": 0,
+    }
+    total_pages = 0
     for page in pages:
+        total_pages += 1
         title = page.get("title", "")
         if title in seen_titles:
             continue
         seen_titles.add(title)
         if BAD_TITLE_PATTERNS.search(title):
+            rejects["bad_title"] += 1
             continue
         if INTERIOR_PATTERN.search(title):
+            rejects["interior"] += 1
             continue
         if not is_relevant(page, pattern):
+            rejects["not_relevant"] += 1
             continue
         if exclude and (
             exclude.search(title) or any(exclude.search(c.get("title", "")) for c in page.get("categories", []) or [])
         ):
-            print(f"    rejecting {title!r}: matches disambiguation exclusion", file=sys.stderr)
+            rejects["disambiguation"] += 1
             continue
         geo = page.get("coordinates")
         if geo and coords:
@@ -333,6 +349,7 @@ def rank_candidates(pages, city, coords, shot_type, exclude_urls):
             if lat is not None and lon is not None:
                 dist = haversine_km(lat, lon, coords[0], coords[1])
                 if dist > MAX_DISTANCE_KM:
+                    rejects["too_far"] += 1
                     continue
         is_pref = any(sub.lower() in title.lower() for sub in preferred)
         infos = page.get("imageinfo")
@@ -341,22 +358,27 @@ def rank_candidates(pages, city, coords, shot_type, exclude_urls):
         info = infos[0]
         descriptionurl = info.get("descriptionurl")
         if descriptionurl in exclude_urls:
+            rejects["already_used"] += 1
             continue
         mime = info.get("mime", "")
         if mime not in ("image/jpeg", "image/png"):
+            rejects["wrong_mime"] += 1
             if is_pref:
                 print(f"      preferred candidate {title!r} dropped: mime={mime!r}", file=sys.stderr)
             continue
         width = info.get("width", 0)
         height = info.get("height", 0)
         if not width or not height:
+            rejects["no_size"] += 1
             continue
         if width < MIN_WIDTH or height < MIN_HEIGHT:
+            rejects["too_small"] += 1
             if is_pref:
                 print(f"      preferred candidate {title!r} dropped: {width}x{height} below minimum", file=sys.stderr)
             continue
         aspect = width / height
         if aspect < MIN_ASPECT or aspect > MAX_ASPECT:
+            rejects["bad_aspect"] += 1
             if is_pref:
                 print(f"      preferred candidate {title!r} dropped: aspect {aspect:.2f} out of range", file=sys.stderr)
             continue
@@ -382,6 +404,9 @@ def rank_candidates(pages, city, coords, shot_type, exclude_urls):
         )
         candidates.append(candidate)
     candidates.sort(key=lambda c: c["rank_key"], reverse=True)
+    if not candidates:
+        active_rejects = {k: v for k, v in rejects.items() if v}
+        print(f"      0 candidates from {total_pages} results; rejections: {active_rejects}", file=sys.stderr)
     return candidates
 
 
