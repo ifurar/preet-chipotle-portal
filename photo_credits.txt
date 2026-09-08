@@ -9,9 +9,9 @@ Author: Derek Rankine from Glasgow, Scotland
 License: CC BY 2.0
 
 File: ljubljana.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Ljubljana_Panorama_(5983895037).jpg
-Author: Grant Bishop from United States
-License: CC BY-SA 2.0
+Commons page: https://commons.wikimedia.org/wiki/File:COVID-19_pandemic_in_Slovenia_(Ljubljana_downtown,_center).jpg
+Author: Petar Milošević
+License: CC BY-SA 4.0
 
 File: porto.jpg
 Commons page: https://commons.wikimedia.org/wiki/File:View_of_Porto_old_town_from_Cais_de_Gaia_with_Porto_Cathedral,_20250605_1623_9881.jpg
@@ -19,8 +19,8 @@ Author: Jakub Hałun
 License: CC BY 4.0
 
 File: budapest.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Budapest_Evening_Panorama_from_Gellert_Hill.jpg
-Author: Mgimelfarb
+Commons page: https://commons.wikimedia.org/wiki/File:Elisabeth_Bridge_panorama_2015.jpg
+Author: Юлия Можаровская
 License: CC BY-SA 4.0
 
 File: tbilisi.jpg
@@ -29,8 +29,8 @@ Author: Misa.stefanovic.07
 License: CC BY-SA 4.0
 
 File: kuala_lumpur.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Kuala_Lumpur_panorama_at_night_from_Roofino_Sky_Dining.jpg
-Author: Slyronit
+Commons page: https://commons.wikimedia.org/wiki/File:Petronas_Twin_Towers._Aerial_view._2019-11-30_15-05-22.jpg
+Author: Shesmax
 License: CC BY-SA 4.0
 
 File: chiang_mai.jpg
@@ -44,6 +44,6 @@ Author: Chris McKenna
 License: CC BY-SA 3.0
 
 File: laguna_beach.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Aerial_view_of_California_Coast,_looking_east_around_Laguna_Beach.jpg
-Author: Joe Mabel
-License: CC BY-SA 4.0
+Commons page: https://commons.wikimedia.org/wiki/File:North_Laguna_Aerial_photo_by_Don_Ramey_Logan.jpg
+Author: Don Ramey Logan
+License: CC BY 4.0
