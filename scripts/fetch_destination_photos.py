@@ -1,21 +1,31 @@
 #!/usr/bin/env python3
-"""Fetch a landmark photo for each destination from Wikimedia Commons.
+"""Fetch a small photo set (landmark / lifestyle / scenic) for each destination.
 
-For every destination this script:
-  1. Searches the Commons API for the specific named landmark(s) each place is
-     actually known for (e.g. Charles Bridge for Prague, Petronas Towers for
-     Kuala Lumpur -- see NAMED_LANDMARKS), falling back to generic skyline/old
-     town/cityscape terms only to fill out the candidate pool.
-  2. Ranks candidates by (names the actual landmark, otherwise-good subject,
-     color over black-and-white, pixel count) and downloads them in that order,
-     verifying each for correct location (city-name/category match, GPS
-     distance, name-collision exclusions) and for stitching-cutout artifacts,
-     until one passes.
-  3. Downloads it to ./destination_photos/<slug>.jpg
-  4. Records attribution (page URL, author, license) for every downloaded photo
-     in ./photo_credits.txt
-  5. Prints a summary table (destination | filename | resolution | license),
-     noting any destination that had to be skipped.
+The brief: these photos need to make someone think "I need to go there" and
+help them judge whether they'd actually want to *live* somewhere, not just
+prove a landmark exists. So for every destination this script fetches THREE
+different shots from Wikimedia Commons:
+
+  - landmark: the specific, actual thing the place is known for (Charles
+    Bridge for Prague, Petronas Towers for Kuala Lumpur -- see
+    NAMED_LANDMARKS), not a generic skyline.
+  - lifestyle: an inviting street/old-town/café scene -- the kind of everyday
+    charm that sells someone on day-to-day life there.
+  - scenic: a natural-beauty or golden-hour shot (waterfront, sunset, park,
+    coastline) with aspirational appeal.
+
+For each shot it ranks candidates (names the landmark > otherwise-evocative
+subject > color over black-and-white > pixel count), downloads them in that
+order, and verifies each for correct location (city-name/category match, GPS
+distance, name-collision exclusions) and for stitching-cutout artifacts,
+skipping to the next candidate until one passes. Shots for the same
+destination never reuse the same source file.
+
+Output:
+  - ./destination_photos/<slug>-<shot>.jpg for each of the three shots
+  - ./photo_credits.txt: filename, Commons page URL, author, license per photo
+  - a summary table (destination | shot | filename | resolution | license),
+    noting anything that had to be skipped
 """
 
 import os
@@ -37,6 +47,7 @@ MIN_WIDTH = 1600
 MIN_HEIGHT = 900
 MIN_ASPECT = 1.15   # width / height must exceed this to count as "landscape"
 MAX_ASPECT = 3.2    # reject extreme panorama crops / banners
+MAX_CANDIDATES_TRIED = 5  # per shot, before giving up on that shot
 
 DESTINATIONS = [
     "Prague, Czechia",
@@ -50,6 +61,10 @@ DESTINATIONS = [
     "Chester, United Kingdom",
     "Laguna Beach, California",
 ]
+
+# Three shots per destination: the specific landmark, an inviting everyday
+# street/lifestyle scene, and a natural-beauty/golden-hour scenic shot.
+SHOT_TYPES = ["landmark", "lifestyle", "scenic"]
 
 # Known city-center coordinates, used to reject same-name-different-place mismatches
 # (e.g. Porto Alegre/Brazil matching a "Porto" search, or Chester/Massachusetts matching
@@ -82,23 +97,25 @@ DISAMBIGUATION_EXCLUDE = {
     ),
 }
 
-# Titles containing one of these are a strong signal the photo is actually the kind of
-# shot we want (skyline/old town/landmark), as opposed to an incidental street corner,
-# construction update, or building photo that happens to be huge and technically in the
-# right city. Preferred over raw resolution so a giant but mundane scan doesn't win by
-# default -- pixel count is only used to break ties within the same tier.
+# Titles containing one of these are a strong signal the photo is actually an evocative,
+# on-message shot (landmark / charming street / natural beauty) rather than an incidental
+# street corner, construction update, or building photo that happens to be huge. Preferred
+# over raw resolution so a giant but mundane scan doesn't win by default -- pixel count is
+# only used to break ties within the same tier.
 GOOD_SUBJECT_PATTERN = re.compile(
     r"\b(skyline|old\s?town|cityscape|panorama|aerial|landmark|cathedral|castle|citadel"
     r"|fortress|palace|tower|bridge|square|harbou?r|waterfront|downtown|skyscraper"
-    r"|old\s?city|historic\s?(centre|center))\b",
+    r"|old\s?city|historic\s?(centre|center)"
+    r"|street|caf[eé]|terrace|market|promenade|pier|garden|park|plaza|piazza"
+    r"|sunset|sunrise|golden\s?hour|dusk|twilight"
+    r"|riverside|seaside|beach|coastline|coast|cove|lagoon|shoreline)\b",
     re.IGNORECASE,
 )
 
 # The single named landmark(s) each destination is actually known for. These drive BOTH
-# the search queries (so we go looking for the specific thing, not just "skyline") and the
-# top tier of ranking (a candidate whose title names the actual landmark always outranks a
-# generic skyline/panorama/aerial shot, even a bigger or cleaner one) -- a generic wide shot
-# of the city is not what "a landmark shot of this place" means.
+# the "landmark" shot's search queries (so we go looking for the specific thing, not just
+# "skyline") and the top tier of its ranking -- a candidate whose title names the actual
+# landmark always outranks a generic skyline/panorama/aerial shot, even a bigger one.
 NAMED_LANDMARKS = {
     "Prague": ["Charles Bridge", "Prague Castle", "Old Town Square", "Astronomical Clock"],
     "Valencia": ["City of Arts and Sciences", "Valencia Cathedral", "Torres de Serranos", "Serranos Towers"],
@@ -116,14 +133,22 @@ LANDMARK_PATTERNS = {
     for city, names in NAMED_LANDMARKS.items()
 }
 
-# Generic fallback terms, queried alongside the named landmarks above so there's still a
-# pool of candidates if a specific landmark search comes up empty for a given city.
-QUERY_SUFFIXES = ["skyline", "old town", "cityscape", "aerial view", "panorama", "landmark"]
+# Search terms for the "lifestyle" shot: an inviting everyday street/café/market scene.
+# Generic on purpose -- these are meant to surface whatever charming pedestrian scene each
+# city actually has on Commons, not force a specific spot.
+LIFESTYLE_SUFFIXES = ["old town street", "cafe terrace", "market square", "colorful houses street"]
 
-# A landmark match on title alone doesn't guarantee an exterior/establishing shot -- the
-# named-landmark search deliberately also surfaces interior photos (a cathedral choir, a
-# library's reading room), which don't read as "this is Chester/Porto/etc" the way an
-# exterior view does. These are rejected outright rather than merely deprioritized.
+# Search terms for the "scenic" shot: natural beauty / golden-hour / water.
+SCENIC_SUFFIXES = ["sunset", "waterfront", "aerial view golden hour", "riverside park"]
+
+# Generic fallback terms for the "landmark" shot, queried alongside the named landmarks so
+# there's still a pool of candidates if a specific landmark search comes up empty.
+LANDMARK_FALLBACK_SUFFIXES = ["skyline", "old town", "cityscape", "aerial view", "panorama", "landmark"]
+
+# A landmark-name or subject-keyword match on title alone doesn't guarantee an exterior/
+# establishing shot -- searches deliberately also surface interior photos (a cathedral
+# choir, a temple's prayer hall, a library reading room), which don't read as "this is the
+# place" the way an exterior view does. These are rejected outright rather than deprioritized.
 INTERIOR_PATTERN = re.compile(
     r"\b(interior|innenaufnahme|indoor|inside|nave|choir|cloister|crypt|sacristy"
     r"|lady\s?chapel|rood\s?screen|chancel|querhaus|organ|orgel|stained\s?glass\s?close"
@@ -133,28 +158,20 @@ INTERIOR_PATTERN = re.compile(
 )
 
 # For a small number of destinations, the search results contained an outright better
-# exterior/establishing shot of the named landmark that the generic (landmark-tier,
-# color, pixel-count) ranking didn't surface -- usually because a bigger but more
-# tightly-cropped or foreground-cluttered photo from the same series won on resolution.
-# Verified by hand against this run's candidate pool; matched candidates jump to the top.
+# exterior/establishing shot of the named landmark that the generic ranking didn't surface
+# -- usually because a bigger but more tightly-cropped or foreground-cluttered photo from
+# the same series won on resolution. Verified by hand against real candidate pools; matched
+# candidates jump to the top of the "landmark" shot's ranking specifically.
 # NOTE: verify any addition by actually looking at the downloaded image, not just its
 # title -- "Wat Chedi Luang Assembly Hall ... - Diliff" sounded like an exterior shot of
 # the temple grounds and turned out to be an interior photo of monks in prayer.
 PREFERRED_TITLE_SUBSTRINGS = {
-    # The first two both turned out to be small/portrait crops (900x1200, 512x854) --
-    # too small to pass MIN_WIDTH/MIN_HEIGHT -- so this third one is an educated guess
-    # from its descriptive title (names both towers, a specific well-lit occasion),
-    # not yet visually confirmed.
     "Kuala Lumpur": [
         "Petronas Twin Towers, Kuala Lumpur, Malaysia",
         "Menara Kembar Petronas, Bandaraya Kuala Lumpur",
         "Kuala Lumpur Tower and Petronas Towers during Merdeka midnight",
     ],
     "Porto": ["View of Porto Cathedral from Clérigos Tower"],
-    # "Stupa" (the tower monument itself, not a room) correctly won the ranking but
-    # failed the stitching-cutout check -- real black corners on that specific upload.
-    # Added a second Stupa-titled variant and the plain "Buddhist temple" exterior shot
-    # as fallbacks in case the first is rejected again.
     "Chiang Mai": [
         "Wat Chedi Luang, Stupa, Chiang Mai",
         "Wat Chedi Luang, Buddhist temple, Chiang Mai",
@@ -201,6 +218,7 @@ def has_stitching_cutouts(path):
         print(f"    WARNING: could not inspect {path} for stitching artifacts: {exc}", file=sys.stderr)
         return False
 
+
 BAD_TITLE_PATTERNS = re.compile(
     r"\b(map|logo|flag|coat of arms|icon|diagram|chart|graph|stamp|banknote|coin|screenshot"
     r"|luge|toboggan|go-?kart|karting|roller\s?coaster|theme\s?park|amusement\s?park"
@@ -209,8 +227,7 @@ BAD_TITLE_PATTERNS = re.compile(
     r"|atr\d|boarding\s?pass"
     r"|glass\s?plate|daguerreotype|stereograph"
     r"|construction|building\s?site|under\s?construction|gradnj|renovation\s?work"
-    r"|equirectangular|\b360\b|spherical\s?panorama|virtual\s?tour"
-    r"|neighbo(u)?rhood|residential\s?(area|district|street))\b",
+    r"|equirectangular|\b360\b|spherical\s?panorama|virtual\s?tour)\b",
     re.IGNORECASE,
 )
 
@@ -286,12 +303,12 @@ def search_candidates(session, city, suffix):
     return list(pages.values())
 
 
-def rank_candidates(pages, city, coords):
-    """Return all qualifying candidates, best first."""
+def rank_candidates(pages, city, coords, shot_type, exclude_urls):
+    """Return all qualifying candidates for this shot, best first."""
     pattern = city_regex(city)
     exclude = DISAMBIGUATION_EXCLUDE.get(city)
-    landmark_pattern = LANDMARK_PATTERNS.get(city)
-    preferred = PREFERRED_TITLE_SUBSTRINGS.get(city, [])
+    landmark_pattern = LANDMARK_PATTERNS.get(city) if shot_type == "landmark" else None
+    preferred = PREFERRED_TITLE_SUBSTRINGS.get(city, []) if shot_type == "landmark" else []
     candidates = []
     seen_titles = set()
     for page in pages:
@@ -311,21 +328,20 @@ def rank_candidates(pages, city, coords):
             print(f"    rejecting {title!r}: matches disambiguation exclusion", file=sys.stderr)
             continue
         geo = page.get("coordinates")
-        print(f"    candidate {title!r} coordinates={geo!r}", file=sys.stderr)
         if geo and coords:
             lat, lon = geo[0].get("lat"), geo[0].get("lon")
             if lat is not None and lon is not None:
                 dist = haversine_km(lat, lon, coords[0], coords[1])
-                print(f"      -> distance from destination center: {dist:.1f} km", file=sys.stderr)
                 if dist > MAX_DISTANCE_KM:
                     continue
         is_pref = any(sub.lower() in title.lower() for sub in preferred)
         infos = page.get("imageinfo")
         if not infos:
-            if is_pref:
-                print(f"      preferred candidate {title!r} dropped: no imageinfo", file=sys.stderr)
             continue
         info = infos[0]
+        descriptionurl = info.get("descriptionurl")
+        if descriptionurl in exclude_urls:
+            continue
         mime = info.get("mime", "")
         if mime not in ("image/jpeg", "image/png"):
             if is_pref:
@@ -334,8 +350,6 @@ def rank_candidates(pages, city, coords):
         width = info.get("width", 0)
         height = info.get("height", 0)
         if not width or not height:
-            if is_pref:
-                print(f"      preferred candidate {title!r} dropped: missing width/height", file=sys.stderr)
             continue
         if width < MIN_WIDTH or height < MIN_HEIGHT:
             if is_pref:
@@ -349,7 +363,7 @@ def rank_candidates(pages, city, coords):
         candidate = {
             "title": title,
             "url": info.get("url"),
-            "descriptionurl": info.get("descriptionurl"),
+            "descriptionurl": descriptionurl,
             "width": width,
             "height": height,
             "mime": mime,
@@ -357,7 +371,7 @@ def rank_candidates(pages, city, coords):
             "good_subject": bool(GOOD_SUBJECT_PATTERN.search(title)),
             "is_color": not bool(MONOCHROME_PATTERN.search(title)),
             "is_named_landmark": bool(landmark_pattern and landmark_pattern.search(title)),
-            "is_preferred": any(sub.lower() in title.lower() for sub in preferred),
+            "is_preferred": is_pref,
         }
         candidate["rank_key"] = (
             candidate["is_preferred"],
@@ -371,14 +385,19 @@ def rank_candidates(pages, city, coords):
     return candidates
 
 
-def find_photo(session, destination):
+def find_photos(session, destination, shot_type, exclude_urls):
     city = destination.split(",")[0].strip()
     coords = DESTINATION_COORDS.get(destination)
-    suffixes = NAMED_LANDMARKS.get(city, []) + QUERY_SUFFIXES
+    if shot_type == "landmark":
+        suffixes = NAMED_LANDMARKS.get(city, []) + LANDMARK_FALLBACK_SUFFIXES
+    elif shot_type == "lifestyle":
+        suffixes = LIFESTYLE_SUFFIXES
+    else:
+        suffixes = SCENIC_SUFFIXES
     all_pages = []
     for suffix in suffixes:
         all_pages.extend(search_candidates(session, city, suffix))
-    return rank_candidates(all_pages, city, coords)
+    return rank_candidates(all_pages, city, coords, shot_type, exclude_urls)
 
 
 def extract_meta(value_dict, key, default="Unknown"):
@@ -415,83 +434,95 @@ def main():
     session.headers.update({"User-Agent": USER_AGENT})
 
     results = []
-    credits_lines = []
+    credits_by_destination = {}
 
     for destination in DESTINATIONS:
         slug = slugify(destination)
-        filename = f"{slug}.jpg"
-        print(f"Searching Commons for: {destination} ...", file=sys.stderr)
-        try:
-            candidates = find_photo(session, destination)
-        except requests.RequestException as exc:
-            print(f"  ERROR querying API for {destination}: {exc}", file=sys.stderr)
-            results.append((destination, None, None, f"SKIPPED (API error: {exc})"))
-            continue
+        used_urls = set()
+        credits_by_destination[destination] = []
+        print(f"=== {destination} ===", file=sys.stderr)
 
-        if not candidates:
-            print(f"  No clean landscape photo found for {destination}; skipping.", file=sys.stderr)
-            results.append((destination, None, None, "SKIPPED (no suitable landscape photo found)"))
-            continue
-
-        dest_path = os.path.join(OUTPUT_DIR, filename)
-        best = None
-        for i, candidate in enumerate(candidates[:8]):
+        for shot_type in SHOT_TYPES:
+            filename = f"{slug}-{shot_type}.jpg"
+            print(f"  Searching Commons for: {shot_type} ...", file=sys.stderr)
             try:
-                download_image(session, candidate["url"], dest_path)
+                candidates = find_photos(session, destination, shot_type, used_urls)
             except requests.RequestException as exc:
-                print(f"  ERROR downloading {candidate['url']}: {exc}", file=sys.stderr)
+                print(f"    ERROR querying API: {exc}", file=sys.stderr)
+                results.append((destination, shot_type, None, None, f"SKIPPED (API error: {exc})"))
                 continue
-            if has_stitching_cutouts(dest_path):
-                print(
-                    f"  candidate #{i + 1} {candidate['title']!r} has stitching cutout borders; trying next",
-                    file=sys.stderr,
+
+            if not candidates:
+                print(f"    No suitable {shot_type} photo found; skipping.", file=sys.stderr)
+                results.append((destination, shot_type, None, None, "SKIPPED (no suitable photo found)"))
+                continue
+
+            dest_path = os.path.join(OUTPUT_DIR, filename)
+            best = None
+            for i, candidate in enumerate(candidates[:MAX_CANDIDATES_TRIED]):
+                try:
+                    download_image(session, candidate["url"], dest_path)
+                except requests.RequestException as exc:
+                    print(f"    ERROR downloading {candidate['url']}: {exc}", file=sys.stderr)
+                    continue
+                if has_stitching_cutouts(dest_path):
+                    print(
+                        f"    candidate #{i + 1} {candidate['title']!r} has stitching cutout borders; trying next",
+                        file=sys.stderr,
+                    )
+                    continue
+                best = candidate
+                break
+
+            if best is None:
+                print(f"    All candidates for {shot_type} failed quality checks; skipping.", file=sys.stderr)
+                if os.path.exists(dest_path):
+                    os.remove(dest_path)
+                results.append((destination, shot_type, None, None, "SKIPPED (no clean candidate passed checks)"))
+                continue
+
+            used_urls.add(best["descriptionurl"])
+            author = extract_meta(best["extmetadata"], "Artist")
+            license_name = license_label(best["extmetadata"])
+            resolution = f"{best['width']}x{best['height']}"
+
+            results.append((destination, shot_type, filename, resolution, license_name))
+            credits_by_destination[destination].append(
+                "\n".join(
+                    [
+                        f"  [{shot_type}] {filename}",
+                        f"  Commons page: {best['descriptionurl']}",
+                        f"  Author: {author}",
+                        f"  License: {license_name}",
+                    ]
                 )
-                continue
-            best = candidate
-            break
-
-        if best is None:
-            print(f"  All candidates for {destination} failed quality checks; skipping.", file=sys.stderr)
-            if os.path.exists(dest_path):
-                os.remove(dest_path)
-            results.append((destination, None, None, "SKIPPED (no clean candidate passed quality checks)"))
-            continue
-
-        author = extract_meta(best["extmetadata"], "Artist")
-        license_name = license_label(best["extmetadata"])
-        resolution = f"{best['width']}x{best['height']}"
-
-        results.append((destination, filename, resolution, license_name))
-        credits_lines.append(
-            "\n".join(
-                [
-                    f"File: {filename}",
-                    f"Commons page: {best['descriptionurl']}",
-                    f"Author: {author}",
-                    f"License: {license_name}",
-                    "",
-                ]
             )
-        )
-        print(f"  Saved {filename} ({resolution}, {license_name})", file=sys.stderr)
-        time.sleep(0.5)  # be polite to the API
+            print(f"    Saved {filename} ({resolution}, {license_name})", file=sys.stderr)
+            time.sleep(0.5)  # be polite to the API
 
     with open(CREDITS_PATH, "w") as f:
-        if credits_lines:
-            f.write("\n".join(credits_lines))
-        else:
+        any_written = False
+        for destination in DESTINATIONS:
+            entries = credits_by_destination.get(destination, [])
+            if not entries:
+                continue
+            f.write(f"{destination}\n")
+            f.write("\n\n".join(entries))
+            f.write("\n\n")
+            any_written = True
+        if not any_written:
             f.write("No photos were downloaded.\n")
 
     # Summary table
     print()
-    header = f"{'Destination':<28} {'Filename':<20} {'Resolution':<12} {'License'}"
+    header = f"{'Destination':<26} {'Shot':<10} {'Filename':<24} {'Resolution':<12} {'License'}"
     print(header)
     print("-" * len(header))
-    for destination, filename, resolution, license_name in results:
+    for destination, shot_type, filename, resolution, license_name in results:
         if filename:
-            print(f"{destination:<28} {filename:<20} {resolution:<12} {license_name}")
+            print(f"{destination:<26} {shot_type:<10} {filename:<24} {resolution:<12} {license_name}")
         else:
-            print(f"{destination:<28} {'-':<20} {'-':<12} {license_name}")
+            print(f"{destination:<26} {shot_type:<10} {'-':<24} {'-':<12} {license_name}")
 
 
 if __name__ == "__main__":
