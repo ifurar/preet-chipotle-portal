@@ -1,49 +1,150 @@
-File: prague.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Czech-2013-Prague-View_from_Charles_Bridge_of_Prague_Castle.jpg
-Author: Godot13
-License: CC BY-SA 4.0
+Prague, Czechia
+  [landmark] prague-landmark.jpg
+  Commons page: https://commons.wikimedia.org/wiki/File:Czech-2013-Prague-View_from_Charles_Bridge_of_Prague_Castle.jpg
+  Author: Godot13
+  License: CC BY-SA 4.0
 
-File: valencia.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Valencia_cathedral_2022_-_north_fa%C3%A7ade_dawn.jpg
-Author: Fernando Pascullo
-License: CC BY-SA 4.0
+  [lifestyle] prague-lifestyle.jpg
+  Commons page: https://commons.wikimedia.org/wiki/File:Easter_markets_at_Wenceslas_Square,_2019_(03).jpg
+  Author: Bahnfrend
+  License: CC BY-SA 4.0
 
-File: ljubljana.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Dragon_Bridge,_Ljubljana,_20240502_1822_7810.jpg
-Author: Jakub Hałun
-License: CC BY 4.0
+  [scenic] prague-scenic.jpg
+  Commons page: https://commons.wikimedia.org/wiki/File:Zizkov_Tower_Sunset_(89455453).jpeg
+  Author: Lukas F
+  License: CC BY 3.0
 
-File: porto.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:View_of_Porto_Cathedral_from_Cl%C3%A9rigos_Tower,_20250605_1724_9965.jpg
-Author: Jakub Hałun
-License: CC BY 4.0
+Valencia, Spain
+  [landmark] valencia-landmark.jpg
+  Commons page: https://commons.wikimedia.org/wiki/File:Valencia_cathedral_2022_-_north_fa%C3%A7ade_dawn.jpg
+  Author: Fernando Pascullo
+  License: CC BY-SA 4.0
 
-File: budapest.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Chain_Bridge,_Budapest_(_Ank_Kumar,_Infosys_Limited)_04.jpg
-Author: Ank Kumar
-License: CC BY-SA 4.0
+  [lifestyle] valencia-lifestyle.jpg
+  Commons page: https://commons.wikimedia.org/wiki/File:Valencia_Old_Town_Cityscape_(48991919677).jpg
+  Author: Derek Rankine from Glasgow, Scotland
+  License: CC BY 2.0
 
-File: tbilisi.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Holy_Trinity_Cathedral_of_Tbilisi_07.jpg
-Author: Mostafameraji
-License: CC BY-SA 4.0
+  [scenic] valencia-scenic.jpg
+  Commons page: https://commons.wikimedia.org/wiki/File:Saler_valencia_sunset.jpg
+  Author: Rafa Castillo (rafolas)
+  License: CC BY-SA 3.0
 
-File: kuala_lumpur.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:2016_Kuala_Lumpur,_Petronas_Towers_(27).jpg
-Author: Marcin Konsek
-License: CC BY-SA 4.0
+Ljubljana, Slovenia
+  [landmark] ljubljana-landmark.jpg
+  Commons page: https://commons.wikimedia.org/wiki/File:Dragon_Bridge,_Ljubljana,_20240502_1822_7810.jpg
+  Author: Jakub Hałun
+  License: CC BY 4.0
 
-File: chiang_mai.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Wat_Chedi_Luang,_Buddhist_temple,_Chiang_Mai,_Thailand.jpg
-Author: Vyacheslav Argenberg
-License: CC BY 4.0
+  [lifestyle] ljubljana-lifestyle.jpg
+  Commons page: https://commons.wikimedia.org/wiki/File:Ljubljana_Central_Market_(54039392141).jpg
+  Author: Jorge Franganillo
+  License: CC BY 2.0
 
-File: chester.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Chester_Roman_Amphitheatre_-_panorama_from_centre_01a.jpg
-Author: Chris McKenna
-License: CC BY-SA 3.0
+  [scenic] ljubljana-scenic.jpg
+  Commons page: https://commons.wikimedia.org/wiki/File:Sunrise_at_Litostroj,_Ljubljana.jpg
+  Author: Aleš Kladnik from Ljubljana, Slovenia
+  License: CC BY 2.0
 
-File: laguna_beach.jpg
-Commons page: https://commons.wikimedia.org/wiki/File:Heisler_Park_-_Laguna_Beach_-_California_-_01.jpg
-Author: NorbertNagel
-License: CC BY-SA 4.0
+Porto, Portugal
+  [landmark] porto-landmark.jpg
+  Commons page: https://commons.wikimedia.org/wiki/File:View_of_Porto_Cathedral_from_Cl%C3%A9rigos_Tower,_20250605_1724_9965.jpg
+  Author: Jakub Hałun
+  License: CC BY 4.0
+
+  [lifestyle] porto-lifestyle.jpg
+  Commons page: https://commons.wikimedia.org/wiki/File:View_of_Porto_old_town_from_Cais_de_Gaia_with_Porto_Cathedral,_20250605_1623_9881.jpg
+  Author: Jakub Hałun
+  License: CC BY 4.0
+
+Budapest, Hungary
+  [landmark] budapest-landmark.jpg
+  Commons page: https://commons.wikimedia.org/wiki/File:Chain_Bridge,_Budapest_(_Ank_Kumar,_Infosys_Limited)_04.jpg
+  Author: Ank Kumar
+  License: CC BY-SA 4.0
+
+  [lifestyle] budapest-lifestyle.jpg
+  Commons page: https://commons.wikimedia.org/wiki/File:Smuz_Cafe_outdoor_terrace_with_guests_Budapest.jpg
+  Author: Smuzcafe
+  License: CC0
+
+  [scenic] budapest-scenic.jpg
+  Commons page: https://commons.wikimedia.org/wiki/File:Andr%C3%A1ssy_Palace_(1880)._Ceiling._-_6_Bem_quay,_Budapest.JPG
+  Author: Globetrotter19
+  License: CC BY-SA 3.0
+
+Tbilisi, Georgia
+  [landmark] tbilisi-landmark.jpg
+  Commons page: https://commons.wikimedia.org/wiki/File:Narikala_Fortress_and_Abanotubani_neighborhood,_Tbilisi_-1.jpg
+  Author: Nikoloz Datuashvili
+  License: Public domain
+
+  [lifestyle] tbilisi-lifestyle.jpg
+  Commons page: https://commons.wikimedia.org/wiki/File:Tbilisi,_Old_town,_Georgia.jpg
+  Author: Vyacheslav Argenberg
+  License: CC BY 4.0
+
+  [scenic] tbilisi-scenic.jpg
+  Commons page: https://commons.wikimedia.org/wiki/File:2025-04-27_Sunset_over_Tbilisi_seen_from_Chaisubani_street.jpg
+  Author: Alexkom000
+  License: CC BY 4.0
+
+Kuala Lumpur, Malaysia
+  [landmark] kuala_lumpur-landmark.jpg
+  Commons page: https://commons.wikimedia.org/wiki/File:2016_Kuala_Lumpur,_Petronas_Towers_(27).jpg
+  Author: Marcin Konsek
+  License: CC BY-SA 4.0
+
+  [lifestyle] kuala_lumpur-lifestyle.jpg
+  Commons page: https://commons.wikimedia.org/wiki/File:Lebuh_Pasar_Besar_(Market_Street)_(between_Jalan_Tun_H_S_Lee_and_Medan_Pasar,_Jalan_Hang_Kasturi),_central_Kuala_Lumpur.jpg
+  Author: User:Two hundred percent.
+  License: CC BY-SA 3.0
+
+  [scenic] kuala_lumpur-scenic.jpg
+  Commons page: https://commons.wikimedia.org/wiki/File:Sunset_over_Kuala_Lumpur_in_May_2020.jpg
+  Author: Renek78
+  License: CC BY-SA 4.0
+
+Chiang Mai, Thailand
+  [landmark] chiang_mai-landmark.jpg
+  Commons page: https://commons.wikimedia.org/wiki/File:Wat_Chedi_Luang,_Buddhist_temple,_Chiang_Mai,_Thailand.jpg
+  Author: Vyacheslav Argenberg
+  License: CC BY 4.0
+
+  [scenic] chiang_mai-scenic.jpg
+  Commons page: https://commons.wikimedia.org/wiki/File:Charoen_Prathet_13_Road_in_Chiang_Mai_at_sunset.jpg
+  Author: Christophe95
+  License: CC BY-SA 4.0
+
+Chester, United Kingdom
+  [landmark] chester-landmark.jpg
+  Commons page: https://commons.wikimedia.org/wiki/File:Chester_Rows,_Bridge_Street_-_geograph.org.uk_-_4391172.jpg
+  Author: Jeff Buck
+  License: CC BY-SA 2.0
+
+  [lifestyle] chester-lifestyle.jpg
+  Commons page: https://commons.wikimedia.org/wiki/File:Exchange_Square,_Chester_-_geograph.org.uk_-_7946591.jpg
+  Author: Stephen McKay
+  License: CC BY-SA 2.0
+
+  [scenic] chester-scenic.jpg
+  Commons page: https://commons.wikimedia.org/wiki/File:Suburban_Sunset,_Hoole,_Chester_-_geograph.org.uk_-_7417385.jpg
+  Author: Jeff Buck
+  License: CC BY-SA 2.0
+
+Laguna Beach, California
+  [landmark] laguna_beach-landmark.jpg
+  Commons page: https://commons.wikimedia.org/wiki/File:Heisler_Park_-_Laguna_Beach_-_California_-_01.jpg
+  Author: NorbertNagel
+  License: CC BY-SA 4.0
+
+  [lifestyle] laguna_beach-lifestyle.jpg
+  Commons page: https://commons.wikimedia.org/wiki/File:Three_Arch_Bay_Photo_Taken_by_pilot_Don_Ramey_Logan.jpg
+  Author: Don Ramey Logan
+  License: CC BY 4.0
+
+  [scenic] laguna_beach-scenic.jpg
+  Commons page: https://commons.wikimedia.org/wiki/File:Sunset_Laguna_Beach_-_02.jpg
+  Author: NorbertNagel
+  License: CC BY-SA 4.0
+
