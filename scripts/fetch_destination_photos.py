@@ -1,10 +1,16 @@
 #!/usr/bin/env python3
-"""Fetch a representative landscape photo for each destination from Wikimedia Commons.
+"""Fetch a landmark photo for each destination from Wikimedia Commons.
 
 For every destination this script:
-  1. Searches the Commons API for candidate images (skyline / old town / landmark).
-  2. Picks the highest-resolution landscape-orientation JPEG/PNG that clears a
-     minimum resolution bar.
+  1. Searches the Commons API for the specific named landmark(s) each place is
+     actually known for (e.g. Charles Bridge for Prague, Petronas Towers for
+     Kuala Lumpur -- see NAMED_LANDMARKS), falling back to generic skyline/old
+     town/cityscape terms only to fill out the candidate pool.
+  2. Ranks candidates by (names the actual landmark, otherwise-good subject,
+     color over black-and-white, pixel count) and downloads them in that order,
+     verifying each for correct location (city-name/category match, GPS
+     distance, name-collision exclusions) and for stitching-cutout artifacts,
+     until one passes.
   3. Downloads it to ./destination_photos/<slug>.jpg
   4. Records attribution (page URL, author, license) for every downloaded photo
      in ./photo_credits.txt
@@ -88,23 +94,31 @@ GOOD_SUBJECT_PATTERN = re.compile(
     re.IGNORECASE,
 )
 
-# Search terms tried for each destination (city name is prepended automatically). All
-# suffixes are queried and pooled before picking the best match, rather than stopping at
-# the first suffix that returns anything -- otherwise a single wrong-place hit under
-# "skyline" can win by default even though a later suffix would have found the real city.
-QUERY_SUFFIXES = ["skyline", "old town", "cityscape", "aerial view", "panorama", "landmark"]
-
-# A handful of cities kept returning technically-correct but weak/generic results (an
-# ultra-high-altitude airliner shot of the whole coastline for Laguna Beach, a nondescript
-# rooftop view for Chiang Mai, a black-and-white photo as the only strong Tbilisi option,
-# a stitched panorama for Ljubljana). Named-landmark search terms bias toward closer, more
-# recognizable, human-scale shots of the specific thing that makes each place distinctive.
-EXTRA_SUFFIXES = {
-    "Laguna Beach": ["Main Beach", "cove", "village", "coastline"],
-    "Chiang Mai": ["Wat Chedi Luang", "Tha Phae Gate", "old city moat", "temple"],
-    "Ljubljana": ["Triple Bridge", "Dragon Bridge", "Preseren Square", "castle"],
-    "Tbilisi": ["Narikala", "Old Town color", "Bridge of Peace"],
+# The single named landmark(s) each destination is actually known for. These drive BOTH
+# the search queries (so we go looking for the specific thing, not just "skyline") and the
+# top tier of ranking (a candidate whose title names the actual landmark always outranks a
+# generic skyline/panorama/aerial shot, even a bigger or cleaner one) -- a generic wide shot
+# of the city is not what "a landmark shot of this place" means.
+NAMED_LANDMARKS = {
+    "Prague": ["Charles Bridge", "Prague Castle", "Old Town Square", "Astronomical Clock"],
+    "Valencia": ["City of Arts and Sciences", "Valencia Cathedral", "Torres de Serranos", "Serranos Towers"],
+    "Ljubljana": ["Triple Bridge", "Ljubljana Castle", "Dragon Bridge", "Preseren Square"],
+    "Porto": ["Dom Luis Bridge", "Livraria Lello", "Porto Cathedral", "Ribeira"],
+    "Budapest": ["Hungarian Parliament", "Fisherman's Bastion", "Chain Bridge", "Buda Castle"],
+    "Tbilisi": ["Narikala Fortress", "Bridge of Peace", "Holy Trinity Cathedral"],
+    "Kuala Lumpur": ["Petronas Towers", "KL Tower", "Batu Caves"],
+    "Chiang Mai": ["Wat Chedi Luang", "Wat Phra Singh", "Tha Phae Gate", "Doi Suthep"],
+    "Chester": ["Chester Cathedral", "Chester Rows", "Eastgate Clock", "Roman Amphitheatre"],
+    "Laguna Beach": ["Main Beach", "Heisler Park"],
 }
+LANDMARK_PATTERNS = {
+    city: re.compile(r"\b(" + "|".join(re.escape(n) for n in names) + r")\b", re.IGNORECASE)
+    for city, names in NAMED_LANDMARKS.items()
+}
+
+# Generic fallback terms, queried alongside the named landmarks above so there's still a
+# pool of candidates if a specific landmark search comes up empty for a given city.
+QUERY_SUFFIXES = ["skyline", "old town", "cityscape", "aerial view", "panorama", "landmark"]
 
 MONOCHROME_PATTERN = re.compile(
     r"\b(black\s?and\s?white|b(&|and)w|monochrome|sepia|grayscale|greyscale)\b", re.IGNORECASE
@@ -234,6 +248,7 @@ def rank_candidates(pages, city, coords):
     """Return all qualifying candidates, best first."""
     pattern = city_regex(city)
     exclude = DISAMBIGUATION_EXCLUDE.get(city)
+    landmark_pattern = LANDMARK_PATTERNS.get(city)
     candidates = []
     seen_titles = set()
     for page in pages:
@@ -285,8 +300,10 @@ def rank_candidates(pages, city, coords):
             "extmetadata": info.get("extmetadata", {}),
             "good_subject": bool(GOOD_SUBJECT_PATTERN.search(title)),
             "is_color": not bool(MONOCHROME_PATTERN.search(title)),
+            "is_named_landmark": bool(landmark_pattern and landmark_pattern.search(title)),
         }
         candidate["rank_key"] = (
+            candidate["is_named_landmark"],
             candidate["good_subject"],
             candidate["is_color"],
             candidate["width"] * candidate["height"],
@@ -299,7 +316,7 @@ def rank_candidates(pages, city, coords):
 def find_photo(session, destination):
     city = destination.split(",")[0].strip()
     coords = DESTINATION_COORDS.get(destination)
-    suffixes = QUERY_SUFFIXES + EXTRA_SUFFIXES.get(city, [])
+    suffixes = NAMED_LANDMARKS.get(city, []) + QUERY_SUFFIXES
     all_pages = []
     for suffix in suffixes:
         all_pages.extend(search_candidates(session, city, suffix))
