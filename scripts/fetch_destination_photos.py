@@ -126,7 +126,9 @@ QUERY_SUFFIXES = ["skyline", "old town", "cityscape", "aerial view", "panorama",
 # exterior view does. These are rejected outright rather than merely deprioritized.
 INTERIOR_PATTERN = re.compile(
     r"\b(interior|innenaufnahme|indoor|inside|nave|choir|cloister|crypt|sacristy"
-    r"|lady\s?chapel|rood\s?screen|chancel|querhaus|organ|orgel|stained\s?glass\s?close)\b",
+    r"|lady\s?chapel|rood\s?screen|chancel|querhaus|organ|orgel|stained\s?glass\s?close"
+    r"|assembly\s?hall|ordination\s?hall|prayer\s?hall|shrine\s?hall|wihan|viharn|ubosot"
+    r"|monks?\s?(praying|chanting|ceremony)|reading\s?room|library\s?hall)\b",
     re.IGNORECASE,
 )
 
@@ -135,10 +137,14 @@ INTERIOR_PATTERN = re.compile(
 # color, pixel-count) ranking didn't surface -- usually because a bigger but more
 # tightly-cropped or foreground-cluttered photo from the same series won on resolution.
 # Verified by hand against this run's candidate pool; matched candidates jump to the top.
+# NOTE: verify any addition by actually looking at the downloaded image, not just its
+# title -- "Wat Chedi Luang Assembly Hall ... - Diliff" sounded like an exterior shot of
+# the temple grounds and turned out to be an interior photo of monks in prayer.
 PREFERRED_TITLE_SUBSTRINGS = {
-    "Kuala Lumpur": ["Petronas Twin Towers, Kuala Lumpur, Malaysia"],
+    "Kuala Lumpur": ["Petronas Twin Towers, Kuala Lumpur, Malaysia", "Menara Kembar Petronas, Bandaraya Kuala Lumpur"],
     "Porto": ["View of Porto Cathedral from Clérigos Tower"],
-    "Chiang Mai": ["Wat Chedi Luang Assembly Hall, Chiang Mai, Thailand - Diliff"],
+    "Chiang Mai": ["Wat Chedi Luang, Stupa, Chiang Mai"],
+    "Chester": ["Chester Roman Amphitheatre - panorama from centre 01a"],
 }
 
 MONOCHROME_PATTERN = re.compile(
@@ -298,21 +304,32 @@ def rank_candidates(pages, city, coords):
                 print(f"      -> distance from destination center: {dist:.1f} km", file=sys.stderr)
                 if dist > MAX_DISTANCE_KM:
                     continue
+        is_pref = any(sub.lower() in title.lower() for sub in preferred)
         infos = page.get("imageinfo")
         if not infos:
+            if is_pref:
+                print(f"      preferred candidate {title!r} dropped: no imageinfo", file=sys.stderr)
             continue
         info = infos[0]
         mime = info.get("mime", "")
         if mime not in ("image/jpeg", "image/png"):
+            if is_pref:
+                print(f"      preferred candidate {title!r} dropped: mime={mime!r}", file=sys.stderr)
             continue
         width = info.get("width", 0)
         height = info.get("height", 0)
         if not width or not height:
+            if is_pref:
+                print(f"      preferred candidate {title!r} dropped: missing width/height", file=sys.stderr)
             continue
         if width < MIN_WIDTH or height < MIN_HEIGHT:
+            if is_pref:
+                print(f"      preferred candidate {title!r} dropped: {width}x{height} below minimum", file=sys.stderr)
             continue
         aspect = width / height
         if aspect < MIN_ASPECT or aspect > MAX_ASPECT:
+            if is_pref:
+                print(f"      preferred candidate {title!r} dropped: aspect {aspect:.2f} out of range", file=sys.stderr)
             continue
         candidate = {
             "title": title,
