@@ -157,7 +157,8 @@ INTERIOR_PATTERN = re.compile(
     r"|lady\s?chapel|rood\s?screen|chancel|querhaus|organ|orgel|stained\s?glass\s?close"
     r"|assembly\s?hall|ordination\s?hall|prayer\s?hall|shrine\s?hall|wihan|viharn|ubosot"
     r"|monks?\s?(praying|chanting|ceremony)|reading\s?room|library\s?hall"
-    r"|ceiling|fresco|frescoed|painted\s?ceiling|chandelier\s?close)\b",
+    r"|ceiling|fresco|frescoed|painted\s?ceiling|chandelier\s?close"
+    r"|stalactite|stalagmite|cave\s?interior|inside\s?the\s?cave|cavern)\b",
     re.IGNORECASE,
 )
 
@@ -170,6 +171,10 @@ INTERIOR_PATTERN = re.compile(
 # title -- "Wat Chedi Luang Assembly Hall ... - Diliff" sounded like an exterior shot of
 # the temple grounds and turned out to be an interior photo of monks in prayer.
 PREFERRED_TITLE_SUBSTRINGS = {
+    # Batu Caves (also in NAMED_LANDMARKS) turned out to rank a dark cave-interior shot
+    # with statues and a burned-in camera timestamp -- technically passed every filter but
+    # is not remotely aspirational. Excluding cave-interior terms above should redirect
+    # this back toward Petronas Towers/KL Tower exterior shots.
     "Kuala Lumpur": [
         "Petronas Twin Towers, Kuala Lumpur, Malaysia",
         "Menara Kembar Petronas, Bandaraya Kuala Lumpur",
@@ -180,12 +185,12 @@ PREFERRED_TITLE_SUBSTRINGS = {
         "Wat Chedi Luang, Stupa, Chiang Mai",
         "Wat Chedi Luang, Buddhist temple, Chiang Mai",
     ],
-    # Broadened to match ANY Roman Amphitheatre exterior upload rather than one specific
-    # file -- Commons full-text search result ordering isn't fully stable across runs, so
-    # pinning a single exact title meant it sometimes just wasn't in that run's top-15
-    # results per suffix and silently fell back to a worse pick ("Chester Rows, Bridge
-    # Street", dominated by Hugo Boss/Jigsaw shop windows).
-    "Chester": ["Roman Amphitheatre"],
+    # Dropped the Roman Amphitheatre pin: even a correctly-selected exterior photo of it
+    # kept framing a modern Travelodge hotel and a garish "TO LET" sign in the background --
+    # the site is genuinely hemmed in by modern buildings, so text-based picking can't avoid
+    # this. Redirected to Chester Cathedral's exterior instead (Gothic sandstone, not
+    # surrounded by modern retail/hotel signage in most standard exterior shots).
+    "Chester": ["Chester Cathedral a former Benedictine Abbey", "Chester Cathedral ext"],
 }
 
 MONOCHROME_PATTERN = re.compile(
