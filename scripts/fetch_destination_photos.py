@@ -19,6 +19,7 @@ import time
 from math import atan2, cos, radians, sin, sqrt
 
 import requests
+from PIL import Image
 
 API_URL = "https://commons.wikimedia.org/w/api.php"
 USER_AGENT = "DestinationPhotoFetcher/1.0 (https://commons.wikimedia.org; educational script)"
@@ -92,6 +93,57 @@ GOOD_SUBJECT_PATTERN = re.compile(
 # the first suffix that returns anything -- otherwise a single wrong-place hit under
 # "skyline" can win by default even though a later suffix would have found the real city.
 QUERY_SUFFIXES = ["skyline", "old town", "cityscape", "aerial view", "panorama", "landmark"]
+
+# A handful of cities kept returning technically-correct but weak/generic results (an
+# ultra-high-altitude airliner shot of the whole coastline for Laguna Beach, a nondescript
+# rooftop view for Chiang Mai, a black-and-white photo as the only strong Tbilisi option,
+# a stitched panorama for Ljubljana). Named-landmark search terms bias toward closer, more
+# recognizable, human-scale shots of the specific thing that makes each place distinctive.
+EXTRA_SUFFIXES = {
+    "Laguna Beach": ["Main Beach", "cove", "village", "coastline"],
+    "Chiang Mai": ["Wat Chedi Luang", "Tha Phae Gate", "old city moat", "temple"],
+    "Ljubljana": ["Triple Bridge", "Dragon Bridge", "Preseren Square", "castle"],
+    "Tbilisi": ["Narikala", "Old Town color", "Bridge of Peace"],
+}
+
+MONOCHROME_PATTERN = re.compile(
+    r"\b(black\s?and\s?white|b(&|and)w|monochrome|sepia|grayscale|greyscale)\b", re.IGNORECASE
+)
+
+# A stitched panorama that couldn't fill its full rectangle often leaves large solid-black
+# cutout regions in the corners -- distinguishable from a legitimately dark night photo by
+# having near-zero color variance (a night skyline still has texture/lights in its corners).
+BORDER_PATCH = 48
+BORDER_MEAN_THRESHOLD = 10
+BORDER_STDDEV_THRESHOLD = 4
+
+
+def has_stitching_cutouts(path):
+    try:
+        with Image.open(path) as im:
+            im = im.convert("L")
+            w, h = im.size
+            corners = [
+                (0, 0, min(BORDER_PATCH, w), min(BORDER_PATCH, h)),
+                (max(0, w - BORDER_PATCH), 0, w, min(BORDER_PATCH, h)),
+                (0, max(0, h - BORDER_PATCH), min(BORDER_PATCH, w), h),
+                (max(0, w - BORDER_PATCH), max(0, h - BORDER_PATCH), w, h),
+            ]
+            flat_black_corners = 0
+            for box in corners:
+                patch = im.crop(box)
+                pixels = list(patch.getdata())
+                if not pixels:
+                    continue
+                mean = sum(pixels) / len(pixels)
+                variance = sum((p - mean) ** 2 for p in pixels) / len(pixels)
+                stddev = variance ** 0.5
+                if mean < BORDER_MEAN_THRESHOLD and stddev < BORDER_STDDEV_THRESHOLD:
+                    flat_black_corners += 1
+            return flat_black_corners >= 1
+    except Exception as exc:
+        print(f"    WARNING: could not inspect {path} for stitching artifacts: {exc}", file=sys.stderr)
+        return False
 
 BAD_TITLE_PATTERNS = re.compile(
     r"\b(map|logo|flag|coat of arms|icon|diagram|chart|graph|stamp|banknote|coin|screenshot"
@@ -178,10 +230,11 @@ def search_candidates(session, city, suffix):
     return list(pages.values())
 
 
-def pick_best(pages, city, coords):
+def rank_candidates(pages, city, coords):
+    """Return all qualifying candidates, best first."""
     pattern = city_regex(city)
     exclude = DISAMBIGUATION_EXCLUDE.get(city)
-    best = None
+    candidates = []
     seen_titles = set()
     for page in pages:
         title = page.get("title", "")
@@ -231,20 +284,26 @@ def pick_best(pages, city, coords):
             "mime": mime,
             "extmetadata": info.get("extmetadata", {}),
             "good_subject": bool(GOOD_SUBJECT_PATTERN.search(title)),
+            "is_color": not bool(MONOCHROME_PATTERN.search(title)),
         }
-        candidate_key = (candidate["good_subject"], candidate["width"] * candidate["height"])
-        if best is None or candidate_key > (best["good_subject"], best["width"] * best["height"]):
-            best = candidate
-    return best
+        candidate["rank_key"] = (
+            candidate["good_subject"],
+            candidate["is_color"],
+            candidate["width"] * candidate["height"],
+        )
+        candidates.append(candidate)
+    candidates.sort(key=lambda c: c["rank_key"], reverse=True)
+    return candidates
 
 
 def find_photo(session, destination):
     city = destination.split(",")[0].strip()
     coords = DESTINATION_COORDS.get(destination)
+    suffixes = QUERY_SUFFIXES + EXTRA_SUFFIXES.get(city, [])
     all_pages = []
-    for suffix in QUERY_SUFFIXES:
+    for suffix in suffixes:
         all_pages.extend(search_candidates(session, city, suffix))
-    return pick_best(all_pages, city, coords)
+    return rank_candidates(all_pages, city, coords)
 
 
 def extract_meta(value_dict, key, default="Unknown"):
@@ -288,23 +347,39 @@ def main():
         filename = f"{slug}.jpg"
         print(f"Searching Commons for: {destination} ...", file=sys.stderr)
         try:
-            best = find_photo(session, destination)
+            candidates = find_photo(session, destination)
         except requests.RequestException as exc:
             print(f"  ERROR querying API for {destination}: {exc}", file=sys.stderr)
             results.append((destination, None, None, f"SKIPPED (API error: {exc})"))
             continue
 
-        if not best:
+        if not candidates:
             print(f"  No clean landscape photo found for {destination}; skipping.", file=sys.stderr)
             results.append((destination, None, None, "SKIPPED (no suitable landscape photo found)"))
             continue
 
         dest_path = os.path.join(OUTPUT_DIR, filename)
-        try:
-            download_image(session, best["url"], dest_path)
-        except requests.RequestException as exc:
-            print(f"  ERROR downloading {best['url']}: {exc}", file=sys.stderr)
-            results.append((destination, None, None, f"SKIPPED (download error: {exc})"))
+        best = None
+        for i, candidate in enumerate(candidates[:8]):
+            try:
+                download_image(session, candidate["url"], dest_path)
+            except requests.RequestException as exc:
+                print(f"  ERROR downloading {candidate['url']}: {exc}", file=sys.stderr)
+                continue
+            if has_stitching_cutouts(dest_path):
+                print(
+                    f"  candidate #{i + 1} {candidate['title']!r} has stitching cutout borders; trying next",
+                    file=sys.stderr,
+                )
+                continue
+            best = candidate
+            break
+
+        if best is None:
+            print(f"  All candidates for {destination} failed quality checks; skipping.", file=sys.stderr)
+            if os.path.exists(dest_path):
+                os.remove(dest_path)
+            results.append((destination, None, None, "SKIPPED (no clean candidate passed quality checks)"))
             continue
 
         author = extract_meta(best["extmetadata"], "Artist")
