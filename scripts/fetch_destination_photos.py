@@ -141,9 +141,24 @@ INTERIOR_PATTERN = re.compile(
 # title -- "Wat Chedi Luang Assembly Hall ... - Diliff" sounded like an exterior shot of
 # the temple grounds and turned out to be an interior photo of monks in prayer.
 PREFERRED_TITLE_SUBSTRINGS = {
-    "Kuala Lumpur": ["Petronas Twin Towers, Kuala Lumpur, Malaysia", "Menara Kembar Petronas, Bandaraya Kuala Lumpur"],
+    # The first two both turned out to be small/portrait crops (900x1200, 512x854) --
+    # too small to pass MIN_WIDTH/MIN_HEIGHT -- so this third one is an educated guess
+    # from its descriptive title (names both towers, a specific well-lit occasion),
+    # not yet visually confirmed.
+    "Kuala Lumpur": [
+        "Petronas Twin Towers, Kuala Lumpur, Malaysia",
+        "Menara Kembar Petronas, Bandaraya Kuala Lumpur",
+        "Kuala Lumpur Tower and Petronas Towers during Merdeka midnight",
+    ],
     "Porto": ["View of Porto Cathedral from Clérigos Tower"],
-    "Chiang Mai": ["Wat Chedi Luang, Stupa, Chiang Mai"],
+    # "Stupa" (the tower monument itself, not a room) correctly won the ranking but
+    # failed the stitching-cutout check -- real black corners on that specific upload.
+    # Added a second Stupa-titled variant and the plain "Buddhist temple" exterior shot
+    # as fallbacks in case the first is rejected again.
+    "Chiang Mai": [
+        "Wat Chedi Luang, Stupa, Chiang Mai",
+        "Wat Chedi Luang, Buddhist temple, Chiang Mai",
+    ],
     "Chester": ["Chester Roman Amphitheatre - panorama from centre 01a"],
 }
 
