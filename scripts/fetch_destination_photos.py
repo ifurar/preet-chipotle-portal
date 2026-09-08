@@ -120,6 +120,27 @@ LANDMARK_PATTERNS = {
 # pool of candidates if a specific landmark search comes up empty for a given city.
 QUERY_SUFFIXES = ["skyline", "old town", "cityscape", "aerial view", "panorama", "landmark"]
 
+# A landmark match on title alone doesn't guarantee an exterior/establishing shot -- the
+# named-landmark search deliberately also surfaces interior photos (a cathedral choir, a
+# library's reading room), which don't read as "this is Chester/Porto/etc" the way an
+# exterior view does. These are rejected outright rather than merely deprioritized.
+INTERIOR_PATTERN = re.compile(
+    r"\b(interior|innenaufnahme|indoor|inside|nave|choir|cloister|crypt|sacristy"
+    r"|lady\s?chapel|rood\s?screen|chancel|querhaus|organ|orgel|stained\s?glass\s?close)\b",
+    re.IGNORECASE,
+)
+
+# For a small number of destinations, the search results contained an outright better
+# exterior/establishing shot of the named landmark that the generic (landmark-tier,
+# color, pixel-count) ranking didn't surface -- usually because a bigger but more
+# tightly-cropped or foreground-cluttered photo from the same series won on resolution.
+# Verified by hand against this run's candidate pool; matched candidates jump to the top.
+PREFERRED_TITLE_SUBSTRINGS = {
+    "Kuala Lumpur": ["Petronas Twin Towers, Kuala Lumpur, Malaysia"],
+    "Porto": ["View of Porto Cathedral from Clérigos Tower"],
+    "Chiang Mai": ["Wat Chedi Luang Assembly Hall, Chiang Mai, Thailand - Diliff"],
+}
+
 MONOCHROME_PATTERN = re.compile(
     r"\b(black\s?and\s?white|b(&|and)w|monochrome|sepia|grayscale|greyscale)\b", re.IGNORECASE
 )
@@ -249,6 +270,7 @@ def rank_candidates(pages, city, coords):
     pattern = city_regex(city)
     exclude = DISAMBIGUATION_EXCLUDE.get(city)
     landmark_pattern = LANDMARK_PATTERNS.get(city)
+    preferred = PREFERRED_TITLE_SUBSTRINGS.get(city, [])
     candidates = []
     seen_titles = set()
     for page in pages:
@@ -257,6 +279,8 @@ def rank_candidates(pages, city, coords):
             continue
         seen_titles.add(title)
         if BAD_TITLE_PATTERNS.search(title):
+            continue
+        if INTERIOR_PATTERN.search(title):
             continue
         if not is_relevant(page, pattern):
             continue
@@ -301,8 +325,10 @@ def rank_candidates(pages, city, coords):
             "good_subject": bool(GOOD_SUBJECT_PATTERN.search(title)),
             "is_color": not bool(MONOCHROME_PATTERN.search(title)),
             "is_named_landmark": bool(landmark_pattern and landmark_pattern.search(title)),
+            "is_preferred": any(sub.lower() in title.lower() for sub in preferred),
         }
         candidate["rank_key"] = (
+            candidate["is_preferred"],
             candidate["is_named_landmark"],
             candidate["good_subject"],
             candidate["is_color"],
